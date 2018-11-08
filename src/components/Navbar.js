@@ -1,22 +1,36 @@
+// Module dependencies
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+
+// Project dependencies
+/// Components
+import BurgerMenu from './BurgerMenu';
+
+/// Context
 import { withAuth } from '../lib/authContext';
+
+/// Navbar
 class Navbar extends Component {
+
+  handleNotLogged = () => {
+    const {isLogSign} = this.props
+    return isLogSign ? <BurgerMenu isLogSign/> : <Link to='/login' className="btn btn-success">Log in</Link>
+  }
+
   render() {  
-    const { isLogged } = this.props;
+    const {isLogged} = this.props;
     return (
-      <div>
-        {isLogged ? <div>
-          <p>username: {this.props.user.username}</p>
-          <p onClick={this.props.logout}>Logout</p>
-        </div> : <div>
-          <Link to='/login'>Login</Link>
-          <Link to='/signup'>Signup</Link>
+      <div className="nav-bar">
+        <div className="logo-container">
+          <img src={process.env.PUBLIC_URL + '/images/uglyVeggie.png'} 
+             className="nav-logo" 
+             alt="Ugly Veggie Logo"/>
         </div>
-      }
+        {isLogged ? <BurgerMenu isLogSign={false} /> : this.handleNotLogged()}
       </div>
     )
   }
 }
 
+// Export
 export default withAuth(Navbar);

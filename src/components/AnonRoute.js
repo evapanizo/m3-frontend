@@ -6,17 +6,17 @@ import {Route, Redirect} from 'react-router-dom';
 /// Context
 import { withAuth } from '../lib/authContext';
 
-// Private Route
-class PrivateRoute extends Component {
+// Anonymous Route
+class AnonRoute extends Component {
   render() {
     const {path, component:Component, isLogged, ...rest} = this.props
     return (
       <Route  {...rest } path={path} render={(props)=>{
-        return isLogged ? <Component {...props} /> : <Redirect to={'/'} />
+        return !isLogged ? <Component {...props} /> : <Redirect to={'/private'} />
       }} />
     )
   }
 }
 
 // Export
-export default withAuth(PrivateRoute);
+export default withAuth(AnonRoute);

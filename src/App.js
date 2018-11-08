@@ -1,31 +1,38 @@
+// Module dependencies
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom'
+import { Switch } from 'react-router-dom'
 
-import PrivateRoute from './components/PrivateRoute'
-import Navbar from './components/Navbar';
+// Project dependencies
+/// Components
+import PrivateRoute from './components/PrivateRoute';
+import AnonRoute from './components/AnonRoute';
+
+///Pages
 import Private from './pages/Private';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
+import Home from './pages/Home';
 
+/// Contexts
 import AuthContext from './lib/authContext';
+
+// App
 class App extends Component {
   render() {
     return (
       <AuthContext>
-        <div className="container">
-          <div>
-            <h1>Basic React Authentication</h1>
-            <Navbar />
+        <main className="container">
             <Switch>
-              <Route path="/signup" component={Signup} />
-              <Route path="/login" component={Login} />              
+              <AnonRoute exact path="/" component={Home} />
+              <AnonRoute path="/signup" component={Signup} />
+              <AnonRoute path="/login" component={Login} />              
               <PrivateRoute path="/private" component={Private} />
             </Switch>
-          </div>
-        </div>
+        </main>
       </AuthContext>
     )
   }
 }
 
+// Export
 export default App;

@@ -1,8 +1,9 @@
+// Module dependencies
 import React, { Component } from 'react'
 import authService from './auth-service';
-
 const { Provider, Consumer } = React.createContext();
 
+// withAuth - Returns a component with superpowers (with given props)
 export const withAuth = (Comp) => { 
   return (props) => {
     return <Consumer>
@@ -13,6 +14,7 @@ export const withAuth = (Comp) => {
   }
 }
 
+// Authentication Context
 export default class AuthContext extends Component {
 
   state = {
@@ -23,18 +25,18 @@ export default class AuthContext extends Component {
 
   componentDidMount() {
     authService.me()
-    .then((user)=>{
+    .then( (user) => {
       this.setState({
         user,
-        isLoading : false,
-        isLogged : true
+        isLoading: false,
+        isLogged: true
       })
     })
-    .catch((error)=>{
+    .catch( () => {
       this.setState({
-        isLogged : false,
-        user : null,
-        isLoading : false
+        isLogged: false,
+        user: null,
+        isLoading: false
       })
     })
   }
@@ -48,13 +50,13 @@ export default class AuthContext extends Component {
 
   handleLogOut = () =>{
     authService.logout()
-    .then(()=>{
+    .then( () => {
       this.setState({
         user : null,
         isLogged : false
       })
     })
-    .catch((error)=>{
+    .catch( (error) => {
       console.log('Hay que manejar errores')
     })
   }

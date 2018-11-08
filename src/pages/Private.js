@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { withAuth } from '../lib/authContext';
+import Navbar from '../components/Navbar';
+
 class Private extends Component {
+
   render() {
     return (
       <div>
-        <h2>Hola estoy en el cosumer</h2>
-        <h1>Welcome {this.props.user.username}</h1>
+        <Navbar/>
+        <h2>HOLA ESTOY EN EL CONSUMER</h2>
       </div>
     )
   }

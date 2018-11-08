@@ -1,30 +1,51 @@
+// Module dependencies
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import auth from '../lib/auth-service';
+
+// Project dependencies
+/// Components
+import Navbar from '../components/Navbar';
+
+// Helpers
+import helpers from '../helpers/helpers';
+
+/// Context
 import { withAuth } from '../lib/authContext';
 
+// Signup
 class Signup extends Component {
 
   state = {
-    username: "",
-    password: "",
+    email: '',
+    password: '',
+    isAlreadyUser: false
   };
 
   handleFormSubmit = (event) => {
     event.preventDefault();
-    const username = this.state.username;
-    const password = this.state.password;
+    const {email, password} = this.state;
+    const {setUser} = this.props;
 
-    auth.signup({ username, password })
+    this.setState({
+      isAlreadyUser: false
+    });
+    
+    auth.signup({ email, password })
       .then( (user) => {
         this.setState({
-            username: "",
-            password: "",
+            email: '',
+            password: '',
         });
-        this.props.setUser(user);
-        this.props.history.push('/private');
+        setUser(user);
       })
-      .catch( error => console.log(error) )
+      .catch( (error) => {
+        const {isAlreadyUser} = helpers.handleError(error);
+        this.setState({
+          email: '',
+          password: '',
+          isAlreadyUser
+        });
+      });
   }
 
   handleChange = (event) => {  
@@ -33,23 +54,39 @@ class Signup extends Component {
   }
 
   render() {
-    const { username, password } = this.state;
+    const { email, password, isAlreadyUser } = this.state;
     return (
       <div>
+        <Navbar isLogSign/>
+        <h1 className="signup-title">Create your account</h1>
         <form onSubmit={this.handleFormSubmit}>
-          <label>Username:</label>
-          <input type="text" name="username" value={username} onChange={this.handleChange}/>
-          <label>Password:</label>
-          <input type="password" name="password" value={password} onChange={this.handleChange} />
-          <input type="submit" value="Signup" />
+          <div className="form-group">
+            <input type="text" 
+                   className="form-control" 
+                   id="exampleInputEmail1" 
+                   name="email" 
+                   placeholder="Email" 
+                   value={email} 
+                   onChange={this.handleChange}
+                   required/>  
+            { isAlreadyUser ? <p className="error-sms">An existing user is registered with this email</p> : null }
+          </div>
+          <div className="form-group">
+            <input type="password" 
+                   className="form-control" 
+                   id="exampleInputPassword1" 
+                   name="password" 
+                   placeholder="Password" 
+                   value={password} 
+                   onChange={this.handleChange} 
+                   required/>
+          </div>
+          <input type="submit" value="Signup" className="btn btn-success giant-btn"/>
         </form>
-
-        <p>Already have account? 
-          <Link to={"/login"}> Login</Link>
-        </p>
       </div>
     )
   }
 }
 
+// Export
 export default withAuth(Signup);
