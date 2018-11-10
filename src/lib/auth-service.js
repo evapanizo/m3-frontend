@@ -28,6 +28,12 @@ class Auth {
       .then(response => response.data)
   }
 
+  updateUser (user) {
+    const { firstName, lastName, deliveryAddress, phone, completedProfile } = user;
+    return this.auth.put('/auth/update', { firstName, lastName, deliveryAddress, phone, completedProfile })
+    .then(response => response.data)
+  }
+
   me() {
     return this.auth.get('/auth/me')
     .then(response => response.data)

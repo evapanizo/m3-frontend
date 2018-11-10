@@ -8,10 +8,13 @@ import PrivateRoute from './components/PrivateRoute';
 import AnonRoute from './components/AnonRoute';
 
 ///Pages
-import Private from './pages/Private';
+import Account from './pages/Account';
+import AccountComplete from './pages/AccountComplete';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Home from './pages/Home';
+import AccountWelcome from './pages/AccountWelcome';
+import AccountEdit from './pages/AccountEdit';
 
 /// Contexts
 import AuthContext from './lib/authContext';
@@ -26,7 +29,10 @@ class App extends Component {
               <AnonRoute exact path="/" component={Home} />
               <AnonRoute path="/signup" component={Signup} />
               <AnonRoute path="/login" component={Login} />              
-              <PrivateRoute path="/private" component={Private} />
+              <PrivateRoute exact path="/account" component={Account} />
+              <PrivateRoute path="/account/complete" component={AccountComplete} />
+              <PrivateRoute path="/account/welcome" component={AccountWelcome} />
+              <PrivateRoute path="/account/edit" component={AccountEdit} />
             </Switch>
         </main>
       </AuthContext>

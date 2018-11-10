@@ -67,7 +67,7 @@ class Login extends Component {
         <h1 className="login-title">Log In</h1>
         <form onSubmit={this.handleFormSubmit}>
           <div className="form-group">
-            <input type="text" 
+            <input type="email" 
                    className="form-control" 
                    id="exampleInputEmail1" 
                    name="email" 

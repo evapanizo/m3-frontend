@@ -12,7 +12,7 @@ class AnonRoute extends Component {
     const {path, component:Component, isLogged, ...rest} = this.props
     return (
       <Route  {...rest } path={path} render={(props)=>{
-        return !isLogged ? <Component {...props} /> : <Redirect to={'/private'} />
+        return !isLogged ? <Component {...props} /> : <Redirect to={'/account'} />
       }} />
     )
   }

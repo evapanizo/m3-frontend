@@ -61,7 +61,7 @@ class Signup extends Component {
         <h1 className="signup-title">Create your account</h1>
         <form onSubmit={this.handleFormSubmit}>
           <div className="form-group">
-            <input type="text" 
+            <input type="email" 
                    className="form-control" 
                    id="exampleInputEmail1" 
                    name="email" 

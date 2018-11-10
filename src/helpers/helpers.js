@@ -18,6 +18,34 @@ const handleError = (error) => {
   return {isErrorEmail, isErrorPassword, isAlreadyUser};
 }
 
+const handleBoxCreation = (size) => {
+  switch (size) {
+    case 'small':
+      return { 
+        size: 'small',
+        price: 5,
+        maxQuantity: 2,
+        products: []
+      }
+    default:
+    case 'medium':
+      return { 
+        size: 'medium',
+        price: 10,
+        maxQuantity: 5,
+        products: []
+      }
+    case 'large':
+      return { 
+        size: 'large',
+        price: 15,
+        maxQuantity: 10,
+        products: []
+      }
+  }
+}
+
 export default {
-  handleError
+  handleError,
+  handleBoxCreation,
 }
