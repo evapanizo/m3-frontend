@@ -77,7 +77,8 @@ class Signup extends Component {
                    id="exampleInputPassword1" 
                    name="password" 
                    placeholder="Password" 
-                   value={password} 
+                   value={password}
+                   //pattern = "/^.*(?=.{7,})(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%*&+()]).*$/"
                    onChange={this.handleChange} 
                    required/>
           </div>

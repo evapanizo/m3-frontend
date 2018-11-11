@@ -17,7 +17,7 @@ class AccountComplete extends Component {
     const { completedProfile } = this.props.user;
     return completedProfile ? <Redirect to='/account/welcome'/> : <div>
           <Navbar/>
-          <Carousel target={'create'}/> 
+          <Carousel/> 
         </div>
   }
 }

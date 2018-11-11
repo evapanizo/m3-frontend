@@ -34,7 +34,7 @@ class BurgerMenu extends Component {
       return ( 
         <ul>
           <Link to='/account' className="menu-link">My account</Link> 
-          <Link to='/account' className="menu-link">My Box</Link>
+          <Link to='/box' className="menu-link">My Box</Link>
           <p onClick={this.props.logout} className="menu-link link-p">Logout</p>
         </ul>
       )

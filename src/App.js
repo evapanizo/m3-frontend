@@ -3,19 +3,20 @@ import React, { Component } from 'react';
 import { Switch } from 'react-router-dom'
 
 // Project dependencies
+///Pages
+import Home from './pages/Home';
+import Signup from './pages/Signup';
+import Login from './pages/Login';
+import Account from './pages/Account';
+import AccountComplete from './pages/AccountComplete';
+import AccountWelcome from './pages/AccountWelcome';
+import AccountEdit from './pages/AccountEdit';
+import Box from './pages/Box';
+import BoxChange from './pages/BoxChange';
+import BoxEdit from './pages/BoxEdit';
 /// Components
 import PrivateRoute from './components/PrivateRoute';
 import AnonRoute from './components/AnonRoute';
-
-///Pages
-import Account from './pages/Account';
-import AccountComplete from './pages/AccountComplete';
-import Signup from './pages/Signup';
-import Login from './pages/Login';
-import Home from './pages/Home';
-import AccountWelcome from './pages/AccountWelcome';
-import AccountEdit from './pages/AccountEdit';
-
 /// Contexts
 import AuthContext from './lib/authContext';
 
@@ -33,6 +34,9 @@ class App extends Component {
               <PrivateRoute path="/account/complete" component={AccountComplete} />
               <PrivateRoute path="/account/welcome" component={AccountWelcome} />
               <PrivateRoute path="/account/edit" component={AccountEdit} />
+              <PrivateRoute exact path="/box" component={Box} />
+              <PrivateRoute path="/box/change" component={BoxChange} />
+              <PrivateRoute path="/box/edit" component={BoxEdit} />
             </Switch>
         </main>
       </AuthContext>

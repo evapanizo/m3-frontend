@@ -21,7 +21,6 @@ class Carousel extends Component {
 
   render() {
     const { transition } = this.state;
-    const target = this.props.target;
     return (
       <div className='carousel-container'>
         <nav className="carousel-nav">
@@ -29,7 +28,7 @@ class Carousel extends Component {
           <span className="dot"></span>
           <Link to="/account" className="close">X</Link>
         </nav>
-        <Slide transition={transition} setTransition={this.setTransition} target={target}/>
+        <Slide transition={transition} setTransition={this.setTransition}/>
       </div>
     )
   }

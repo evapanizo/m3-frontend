@@ -27,12 +27,15 @@ class Slide extends Component {
   handleBoxSelection = (inputValue) => {
     const {setTransition} = this.props;
     const box = helpers.handleBoxCreation(inputValue);
-    console.log(box)
     this.setState({box});
     setTransition(2);
   }
 
-  handleCreation = (userValues) => {
+  handleComplete = (userValues) => {
+    this.setState({
+      isLoading: true,
+    }) 
+    userValues['completedProfile'] = true;
     const {setUser, user} = this.props;
     const {box} = this.state;
     box['owner'] = user._id;
@@ -50,39 +53,6 @@ class Slide extends Component {
         }) 
         console.log(error)
       });
-  }
-
-  handleUpdate = (userValues) => {
-    const {setUser} = this.props;
-    const {box} = this.state;
-    boxService.editBox(box)
-      .then( () => {
-        return authService.updateUser(userValues)
-      })
-      .then( (updatedUser) => {
-        setUser(updatedUser);
-        this.props.history.push('/account')
-      })
-     .catch((error) => {
-        this.setState({
-          isLoading: false,
-          box: null,
-        }) 
-        console.log(error)
-      });
-  }
-
-  handleComplete = (userValues) => {
-    this.setState({
-      isLoading: true,
-    }) 
-    const {target} = this.props;
-    userValues['completedProfile'] = true;
-    if(target === 'create') {
-      this.handleCreation(userValues);
-    } else {
-      this.handleUpdate(userValues);
-    }
   }
 
   handleTransition = () => {

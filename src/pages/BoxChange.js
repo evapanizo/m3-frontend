@@ -1,12 +1,26 @@
 // Module dependencies
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Redirect, withRouter } from 'react-router-dom';
 
-// FirstSlide
-class FirstSlide extends Component {
+// Project dependencies
+///Components
+import Navbar from '../components/Navbar'
+
+/// Helpers
+import helpers from '../helpers/helpers';
+
+// Services
+import boxService from '../lib/box-service';
+
+/// Context
+import { withAuth } from '../lib/authContext';
+
+// BoxChange
+class BoxChange extends Component {
 
   state = {
     inputValue: '',
-    emptyField: false
+    emptyField: false,
   }
   
   handleSmall = () => {
@@ -29,21 +43,28 @@ class FirstSlide extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const { handleSubmit } = this.props;
     const { inputValue } = this.state;
     if(inputValue === '') {
-        this.setState({
-          emptyField: true
-        })
-    } else {
-      handleSubmit(inputValue);
       this.setState({
-        inputValue: ''
+        emptyField: true
       })
+    } else {
+      const box = helpers.handleBoxCreation(inputValue);
+      box["products"] = [];
+      boxService.editBox(box)
+        .then( () => {
+          this.props.history.push('/account')
+        })
+      .catch((error) => {
+          this.setState({
+            inputValue: ''
+          }) 
+          console.log(error)
+        });
     }
   }
 
-  render() {
+  handleChange = () => {
     const {emptyField} = this.state;
     return (
       <div>
@@ -66,15 +87,24 @@ class FirstSlide extends Component {
                className='box-img'
                alt='Large box logo'
         />
+        <p>Notice that if you change your plan...BLA BLA BLA</p>
         {emptyField ? <p className="error-sms">Please, select a box</p> : null}
         <form onSubmit={this.handleSubmit}>
-          <input className="btn" type="submit" value=">"/>
+          <input className="btn btn-success" type="submit" value="Change"/>
         </form>
-
       </div>
-    )   
+    )
+  }
+
+  render() {
+    const {completedProfile} = this.props.user;
+    return (
+      <div>
+        <Navbar/>
+        {completedProfile ? this.handleChange() : <Redirect to='/account'/>}
+      </div>
+    )
   }
 }
 
-// Export
-export default FirstSlide;
+export default withRouter(withAuth(BoxChange));

@@ -45,7 +45,16 @@ const handleBoxCreation = (size) => {
   }
 }
 
+const getTotalQuantityOfProducts = (box) => {
+  return box.products.reduce( (acc, cval) => {
+    const sum = acc+cval.quantity;
+    return sum;
+  }, 0)
+}
+
+// Export
 export default {
   handleError,
   handleBoxCreation,
+  getTotalQuantityOfProducts
 }

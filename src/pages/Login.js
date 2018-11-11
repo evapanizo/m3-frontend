@@ -6,10 +6,8 @@ import auth from '../lib/auth-service';
 // Project dependencies
 /// Components
 import Navbar from '../components/Navbar';
-
 // Helpers
 import helpers from '../helpers/helpers';
-
 /// Context
 import { withAuth } from '../lib/authContext';
 

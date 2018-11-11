@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 // Project dependencies
-/// Context
+/// Services
 import authService from '../lib/auth-service';
 import boxService from '../lib/box-service';
 
@@ -48,13 +48,14 @@ class CompletedAccount extends Component {
           <p>{`${user.firstName} ${user.lastName}`}</p>
           <p>{`${deliveryAddress.streetAddress} ${deliveryAddress.postalCode} ${deliveryAddress.city}`}</p>
           <p>{`${deliveryAddress.province} ${deliveryAddress.country}`}</p>
+          <Link to='/account/edit' className='btn btn-success'>Update account</Link>
         </section>
         <section>
           <h2>Your box</h2>
           <p>{box.size}</p>
           <p>{`${box.price}€ - ${box.maxQuantity} Kg`}</p>
+          <Link to='/box/change' className='btn btn-success'>Change Box</Link>
         </section>
-        <Link to='/account/edit' className='btn btn-success'>Edit account</Link>
       </main>
     )
   }
