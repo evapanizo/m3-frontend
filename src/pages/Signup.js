@@ -78,7 +78,6 @@ class Signup extends Component {
                    name="password" 
                    placeholder="Password" 
                    value={password}
-                   //pattern = "/^.*(?=.{7,})(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%*&+()]).*$/"
                    onChange={this.handleChange} 
                    required/>
           </div>

@@ -34,7 +34,7 @@ class ProductCart extends Component {
         return <p key={product.productId}>{`${product.productName} x ${product.quantity} kg`}</p>
       })}
       { fullBox ? <p className="error-sms">Your box is full!</p> : null}
-      {true ? <form onSubmit={this.handleUpdate}><input className="btn btn-success" type="submit" value="update"/></form>: <button>Paypal</button> }
+      { payment ? <form onSubmit={this.handleUpdate}><input className="btn btn-success" type="submit" value="update"/></form>: <form onSubmit={this.handleUpdate}><input className="btn btn-success" type="submit" value="Paypal"/></form> }
     </div>
   }
 }
