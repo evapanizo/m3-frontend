@@ -19,19 +19,19 @@ class Box extends Component {
   }
 
   componentDidMount() {
-    boxService.getBox()
-        .then( (box) => {
-          this.setState({
-            isLoading: false,
-            box
-          })
+    boxService.getPopulatedBox()
+      .then( (box) => {
+        this.setState({
+          isLoading: false,
+          box
         })
-        .catch(error => {
-          this.setState({
-            isLoading: false,
-          })
-          console.log(error);
-        }) 
+      })
+      .catch(error => {
+        this.setState({
+          isLoading: false,
+        })
+        console.log(error);
+      }) 
   }
 
   render() {
@@ -47,11 +47,14 @@ class Box extends Component {
               <p>{`${box.maxQuantity} kg`}</p>
             </section>
             <section>
-              { box.products.map(() => {
-                return console.log('product');
+              <Link to='/box/edit' className='btn btn-success'>Add products</Link>
+              { box.products.map((product) => {
+                return <div key={product._id}>
+                    <p>{product.productId.name}</p>
+                    <p>{product.quantity}</p>
+                  </div>
               })}
             </section>
-            <Link to='/box/edit' className='btn btn-success'>Add products</Link>
           </div> 
         }
       </div>

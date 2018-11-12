@@ -40,7 +40,7 @@ class CompletedAccount extends Component {
     const { user, box } = this.state;
     const { deliveryAddress } = this.state.user;
     return (
-      <main>
+      <div>
         <section>
           <h2>Your account</h2>
           <p>{user.email}</p>
@@ -56,17 +56,13 @@ class CompletedAccount extends Component {
           <p>{`${box.price}€ - ${box.maxQuantity} Kg`}</p>
           <Link to='/box/change' className='btn btn-success'>Change Box</Link>
         </section>
-      </main>
+      </div>
     )
   }
 
   render () {
     const { isLoading } = this.state;
-    return (
-      <div>
-        { isLoading ? <h1>Loading...</h1> : this.handleRender() }
-      </div>
-    );
+    return isLoading ? <h1>Loading...</h1> : this.handleRender()
   }
 }
 

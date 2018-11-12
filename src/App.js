@@ -1,6 +1,6 @@
 // Module dependencies
 import React, { Component } from 'react';
-import { Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 
 // Project dependencies
 ///Pages
@@ -14,6 +14,7 @@ import AccountEdit from './pages/AccountEdit';
 import Box from './pages/Box';
 import BoxChange from './pages/BoxChange';
 import BoxEdit from './pages/BoxEdit';
+import NotFound from './pages/NotFound';
 /// Components
 import PrivateRoute from './components/PrivateRoute';
 import AnonRoute from './components/AnonRoute';
@@ -37,6 +38,7 @@ class App extends Component {
               <PrivateRoute exact path="/box" component={Box} />
               <PrivateRoute path="/box/change" component={BoxChange} />
               <PrivateRoute path="/box/edit" component={BoxEdit} />
+              <Route component={NotFound} />
             </Switch>
         </main>
       </AuthContext>

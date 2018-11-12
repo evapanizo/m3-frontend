@@ -16,7 +16,6 @@ import productsService from '../lib/products-service';
 // Helpers
 import helpers from '../helpers/helpers';
 
-
 class BoxEdit extends Component {
 
   state = {
@@ -25,6 +24,7 @@ class BoxEdit extends Component {
     box: null,
     fullBox: false,
     cartIsHidden: true,
+    productsInBox: null
   }
 
   handleSearch = (products) => {
@@ -33,9 +33,10 @@ class BoxEdit extends Component {
     })
   }
 
-  handleAddToBox = (newBoxProduct) => {
+  handleAddToBox = (newBoxProduct, productName) => {
     let box = Object.assign({}, this.state.box);
     box.products = this.state.box.products.slice();
+    let productsInBox = this.state.productsInBox.slice();
     const currentTotalQuantity = helpers.getTotalQuantityOfProducts(box);
     const futureTotalQuantity = currentTotalQuantity + newBoxProduct.quantity;
     const index = box.products.map(product => product.productId).indexOf(newBoxProduct.productId)
@@ -43,47 +44,61 @@ class BoxEdit extends Component {
       if (index === -1 && box.maxQuantity !== currentTotalQuantity ) {
         newBoxProduct.quantity = box.maxQuantity-currentTotalQuantity;
         box.products.push(newBoxProduct);
+        productsInBox.push({...newBoxProduct, productName});
       } else if (index !== -1){
         box.products[index].quantity += box.maxQuantity-currentTotalQuantity;
+        productsInBox[index].quantity += box.maxQuantity-currentTotalQuantity;
       } 
       this.setState({
         fullBox: true,
-        box
+        box,
+        productsInBox
       })
     } else {
       if (index === -1) {
         box.products.push(newBoxProduct);
+        productsInBox.push({...newBoxProduct, productName});
       } else {
         box.products[index].quantity += newBoxProduct.quantity;
+        productsInBox[index].quantity += newBoxProduct.quantity;
         if(box.products[index].quantity <= 0){
           box.products.splice(index, 1)
+          productsInBox.splice(index, 1)
         }
       }
       this.setState({
         box,
-        fullBox: false
+        fullBox: false,
+        productsInBox
       })
     }
   }
 
   componentDidMount () {
-    boxService.getBox()
-        .then( (box) => {
-          productsService.getProducts()
-            .then( (products) => {
+    boxService.getPopulatedBox()
+      .then( (result) => {
+        const productsInBox = result.products.slice().map( (item) => {
+          return {"productId": item.productId._id,
+          "productName": item.productId.name,
+          "quantity":item.quantity
+          }
+        });
+        boxService.getBox()
+          .then( (box) => {
+            productsService.getProducts()
+            .then ( (products) => {
               this.setState({
                 isLoading: false,
                 box,
-                products
+                products,
+                productsInBox
               })
             })
-        })
-        .catch(error => {
-          this.setState({
-            isLoading: false,
           })
-          console.log(error);
-        }) 
+      })
+      .catch( error => {
+        console.log(error);
+      })
   }
 
   handleClickCart = () => {
@@ -94,10 +109,10 @@ class BoxEdit extends Component {
   }
 
   render() {
-    const { isLoading, box, products, fullBox, cartIsHidden} = this.state;
+    const { isLoading, box, products, fullBox, cartIsHidden, productsInBox } = this.state;
     const { completedProfile } = this.props.user;
     return isLoading ? <h1>Loading...</h1> : <div>
-      {!completedProfile ? <Redirect to='/account'/> : <main className="search-container">
+      {!completedProfile ? <Redirect to='/account'/> : <div className="search-container">
         <Navbar/>
         <SearchBar handleSearch={this.handleSearch}/>
         <input type="image" 
@@ -105,12 +120,11 @@ class BoxEdit extends Component {
                src={process.env.PUBLIC_URL + `/images/${box.size}Box.png`} 
                alt={`${box.size} box`}
                onClick={this.handleClickCart}/>
-        { fullBox ? <p className="error-sms">Your box is full!</p> : null}
         <section className="products-window">
           <ListOfProducts products={products} box={box} fullBox={fullBox} handleAddToBox={this.handleAddToBox}/>
         </section>
-        {cartIsHidden ? null : <ProductCart className="cart" box={box}/>}
-      </main>
+        {cartIsHidden ? null : <ProductCart className="cart" productsInBox={productsInBox} box={box} fullBox={fullBox}/>}
+      </div>
     }
     </div>
   }

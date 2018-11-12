@@ -148,10 +148,33 @@ body {
 }
 
 .cart-container {
-  padding-bottom: 100px;
+  position: absolute;
+  top: 100px;
+  right: 0;
 }
 
 .cart-icon {
   width: 20%;
 }
 
+/* ---- Error 404 ---- */
+
+.error-container {
+  text-align: center;
+  padding-top: 100px;
+  max-height: 667px;
+}
+
+#error-404-title {
+  font-size: 3em;
+  font-weight: 900;
+  margin-bottom: 20px;
+}
+
+#error-404-text {
+  margin-bottom: 40px;
+}
+
+#error-404-img {
+  width: 90%;
+}

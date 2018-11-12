@@ -3,13 +3,13 @@ import Product from '../components/Product';
 
 export default class ListOfProducts extends Component {
 
-  handleAddToBox = (quantity, productId) => {
+  handleAddToBox = (quantity, productId, productName) => {
       const newBoxProduct = {
         quantity,
         productId
       }
       const { handleAddToBox } = this.props;
-      handleAddToBox(newBoxProduct);
+      handleAddToBox(newBoxProduct, productName);
   }
 
   render() {

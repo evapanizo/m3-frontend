@@ -12,7 +12,7 @@ class Products {
   }
 
   getProducts() {
-    return this.products.get('/products/get')
+    return this.products.get('/products')
       .then(({ data }) => data);
   }
 
@@ -20,6 +20,12 @@ class Products {
     return this.products.get(`/products/search?name=${searchValue}`)
       .then(({ data }) => data);
   }
+
+  getById(idArray) {
+    return this.products.post(`/products`, idArray)
+      .then(({ data }) => data);
+  }
+
 }
 
 // Instance of the service

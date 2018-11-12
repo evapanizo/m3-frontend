@@ -48,7 +48,7 @@ class Product extends Component {
         inputValue: 0,
       })
     } else {
-      handleAddToBox(parseFloat(inputValue), product._id)
+      handleAddToBox(parseFloat(inputValue), product._id, product.name)
       return this.setState({
         inputValue: 0,
         isEmpty: false,

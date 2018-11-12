@@ -21,11 +21,15 @@ class Box {
       .then(({ data }) => data);
   }
 
+  getPopulatedBox() {
+    return this.box.get('/box/populate')
+      .then(({ data }) => data);
+  }
+
   editBox(box) {
     return this.box.put('/box/edit', box)
       .then(({ data }) => data);
   }
-
 }
 
 // Instance of the service
