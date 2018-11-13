@@ -2,10 +2,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-// Project dependencies
-/// Context
-import { withAuth } from '../lib/authContext';
-
 // BurgerMenu
 class BurgerMenu extends Component {
 
@@ -20,29 +16,9 @@ class BurgerMenu extends Component {
     })
   }
 
-  handleMenu = () =>{
-    const {isLogSign} = this.props;
-    if (isLogSign) {
-      return ( 
-        <ul>
-          <Link to='/' className="menu-link">Home</Link> 
-          <Link to='/login' className="menu-link">Login</Link>
-          <Link to='/signup' className="menu-link">Signup</Link>
-        </ul>
-      )
-    } else {
-      return ( 
-        <ul>
-          <Link to='/account' className="menu-link">My account</Link> 
-          <Link to='/box' className="menu-link">My Box</Link>
-          <p onClick={this.props.logout} className="menu-link link-p">Logout</p>
-        </ul>
-      )
-    }
-  }
-
   render() {
     const {isVisible} = this.state;
+    const visible = isVisible ? "open-menu" : "";
     return (
       <div className="burger-menu-container">
         <img src={process.env.PUBLIC_URL + '/images/menu-icon.png'}
@@ -50,11 +26,15 @@ class BurgerMenu extends Component {
              className="menu-icon"
              onClick={this.handleClick}
              />
-        { isVisible ? this.handleMenu(): null}
+        <ul className={`menu ${visible}`}>
+          <Link to='/account' className="menu-link">My account</Link> 
+          <Link to='/box' className="menu-link">My Box</Link>
+          <p onClick={this.props.logout} className="menu-link link-p">Logout</p>
+        </ul>
       </div>
     )
   }
 }
 
 // Export
-export default withAuth(BurgerMenu);
+export default BurgerMenu;

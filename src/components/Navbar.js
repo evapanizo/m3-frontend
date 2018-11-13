@@ -12,22 +12,20 @@ import { withAuth } from '../lib/authContext';
 /// Navbar
 class Navbar extends Component {
 
-  handleNotLogged = () => {
-    const {isLogSign} = this.props
-    return isLogSign ? <BurgerMenu isLogSign/> : null
-  }
-
   render() {  
-    const {isLogged, isLogSign} = this.props;
-    const companyLogo = !isLogged && !isLogSign ? 'big-logo' : ''
+    const {isLogged} = this.props;
+    const companyLogo = !isLogged ? '' : 'nav-logo'
+    const logoContainer = !isLogged ? 'logo-container' : ''
     return (
-      <div className="nav-bar margin-container">
-        <div className="logo-container">
-          <img src={process.env.PUBLIC_URL + '/images/ugly-veggies.png'} 
+      <div className="nav-bar">
+        <div className={logoContainer}>
+          <Link to='/'>
+            <img src={process.env.PUBLIC_URL + '/images/ugly-veggies.png'} 
              className={companyLogo}
              alt="Ugly Veggie Logo"/>
+          </Link>
         </div>
-        {isLogged ? <BurgerMenu isLogSign={false} /> : this.handleNotLogged()}
+        {isLogged ? <BurgerMenu/> : null}
       </div>
     )
   }

@@ -62,34 +62,34 @@ class Login extends Component {
     return (
       <div>
         <Navbar isLogSign/>
-        <h1 className="login-title">Log In</h1>
-        <form onSubmit={this.handleFormSubmit}>
-          <div className="form-group">
-            <input type="email" 
-                   className="form-control" 
-                   id="exampleInputEmail1" 
-                   name="email" 
-                   placeholder="Email" 
-                   value={email} 
-                   onChange={this.handleChange}
-                   required/>
-            { isErrorEmail ? <p className="error-sms">This email is not registered in the database</p> : null }
-          </div>
-          <div className="form-group">
-          <input type="password" 
-                 className="form-control" 
-                 id="exampleInputPassword1" 
-                 name="password" 
-                 placeholder="Password" 
-                 value={password} 
-                 onChange={this.handleChange} 
-                 required/>
-            { isErrorPassword ? <p className="error-sms">Password is not correct</p> : null }
-          </div>
-          <input type="submit" value="Login" className="btn btn-primary giant-btn"/>
-        </form>
-        <Link to='/' className="forgot-pass-text">Forgot your password?</Link>
-      </div>
+        <section className="login-section">
+          <h1 className="enter-title">Welcome back!</h1>
+          <form onSubmit={this.handleFormSubmit}>
+            <div className="form-group">
+              <input type="email" 
+                    className="form-control" 
+                    name="email" 
+                    placeholder="Email" 
+                    value={email} 
+                    onChange={this.handleChange}
+                    required/>
+              { isErrorEmail ? <p className="error-sms">This email is not registered in the database</p> : <p className="error-sms"></p> }
+            </div>
+            <div className="form-group">
+            <input type="password" 
+                  className="form-control" 
+                  name="password" 
+                  placeholder="Password" 
+                  value={password} 
+                  onChange={this.handleChange} 
+                  required/>
+              { isErrorPassword ? <p className="error-sms">Password is not correct</p> : <p className="error-sms"></p> }
+            </div>
+            <input type="submit" value="Log in" className="btn btn-primary"/>
+          </form>
+          <Link to='/' className="small-text primary-link">Forgot your password?</Link>
+        </section>
+        </div>
     )
   }
 }

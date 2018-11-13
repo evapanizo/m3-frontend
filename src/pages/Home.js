@@ -11,17 +11,21 @@ class Home extends Component {
   
   render() {
     return (
-      <div className="homepage-container">
-        <Navbar isLogSign={false} />
+      <div id="homepage">
+        <Navbar className="margin-container" isLogSign={false} />
         <section className="what-is">
-          <h1>What is Ugly Veggie?</h1>
-          <p>Ugly Veggie is bla bla bla bla....</p>
+          <h1>What is Ugly Veggies?</h1>
+          <p className="home-text"> A box full of fruits and vegetables delivered at your door!
+          Healty and delicious but sad, as they have been rejected by supermarkets based on looks. 
+          Help them feel pretty again!
+          </p>
         </section>
-        <section className="how-works">
-          <h1>How it works</h1>
-          <p>Bla bla bla bla bla bla bla bla...</p>
+        <section className="enter-options">
+          <Link to="/signup" className="btn btn-primary giant-btn">Join now</Link>
+          <p className="small-text login-text">Already a costumer?
+            <Link className="primary-link" to="/login"> Log in</Link>
+          </p>
         </section>
-        <Link to="/signup" className="btn btn-primary giant-btn">Join now!</Link>
       </div>
     )
   }

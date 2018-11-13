@@ -1,14 +1,14 @@
 // Module dependencies
 import React, { Component } from 'react';
-import auth from '../lib/auth-service';
+import {Link} from 'react-router-dom';
 
 // Project dependencies
 /// Components
 import Navbar from '../components/Navbar';
-
-// Helpers
+/// Helpers
 import helpers from '../helpers/helpers';
-
+/// Services
+import auth from '../lib/auth-service';
 /// Context
 import { withAuth } from '../lib/authContext';
 
@@ -58,31 +58,31 @@ class Signup extends Component {
     return (
       <div>
         <Navbar isLogSign/>
-        <h1 className="signup-title">Create your account</h1>
-        <form onSubmit={this.handleFormSubmit}>
-          <div className="form-group">
-            <input type="email" 
-                   className="form-control" 
-                   id="exampleInputEmail1" 
-                   name="email" 
-                   placeholder="Email" 
-                   value={email} 
-                   onChange={this.handleChange}
-                   required/>  
-            { isAlreadyUser ? <p className="error-sms">An existing user is registered with this email</p> : null }
-          </div>
-          <div className="form-group">
-            <input type="password" 
-                   className="form-control" 
-                   id="exampleInputPassword1" 
-                   name="password" 
-                   placeholder="Password" 
-                   value={password}
-                   onChange={this.handleChange} 
-                   required/>
-          </div>
-          <input type="submit" value="Signup" className="btn btn-primary giant-btn"/>
-        </form>
+          <section className="signup-section">
+          <h1 className="enter-title">Create your account</h1>
+          <form onSubmit={this.handleFormSubmit}>
+            <div className="form-group">
+              <input type="email" 
+                      className="form-control" 
+                      name="email" 
+                      placeholder="Email" 
+                      value={email} 
+                      onChange={this.handleChange}
+                      required/>  
+              { isAlreadyUser ? <p className="error-sms">An existing user is registered with this email</p> : <p className="error-sms"></p> }
+            </div>
+            <div className="form-group">
+              <input type="password" 
+                      className="form-control" 
+                      name="password" 
+                      placeholder="Password" 
+                      value={password}
+                      onChange={this.handleChange} 
+                      required/>
+            </div>
+            <input type="submit" value="Sign up" className="btn btn-primary form-button"/>
+          </form>
+        </section>
       </div>
     )
   }
