@@ -2,6 +2,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+// Project dependencies
+/// Context
+import { withAuth } from '../lib/authContext';
+
 // BurgerMenu
 class BurgerMenu extends Component {
 
@@ -37,4 +41,4 @@ class BurgerMenu extends Component {
 }
 
 // Export
-export default BurgerMenu;
+export default withAuth(BurgerMenu);
