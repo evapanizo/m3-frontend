@@ -69,7 +69,7 @@ class Product extends Component {
           {isEmpty ? <p className="error-sms">Quantity is empty</p> : null }
           {isNegative ? <p className="error-sms">Can't be negative</p> : null }
           {isFull ? <p className="error-sms">Box is full</p> : null }
-          <input type="submit" value="Add to box" className="btn btn-success"/>
+          <input type="submit" value="Add to box" className="btn btn-primary"/>
         </form>
       </div>
     )

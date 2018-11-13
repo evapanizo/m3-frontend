@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 // Project dependencies
 /// Components
 import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 
 // Home
 class Home extends Component {
@@ -22,8 +21,7 @@ class Home extends Component {
           <h1>How it works</h1>
           <p>Bla bla bla bla bla bla bla bla...</p>
         </section>
-        <Link to="/signup" className="btn btn-success giant-btn">Join now!</Link>
-        <Footer/>
+        <Link to="/signup" className="btn btn-primary giant-btn">Join now!</Link>
       </div>
     )
   }

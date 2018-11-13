@@ -86,7 +86,7 @@ class BoxForm extends Component {
           be canceled until you fill your box again. BLA BLA</p>
         {emptyField ? <p className="error-sms">Please, select a box</p> : null}
         <form onSubmit={this.handleSubmit}>
-          <input className="btn btn-success" type="submit" value="Change"/>
+          <input className="btn btn-primary" type="submit" value="Change"/>
         </form>
       </div>
     )

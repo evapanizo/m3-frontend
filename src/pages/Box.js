@@ -47,7 +47,7 @@ class Box extends Component {
               <p>{`${box.maxQuantity} kg`}</p>
             </section>
             <section>
-              <Link to='/box/edit' className='btn btn-success'>Add products</Link>
+              <Link to='/box/edit' className='btn btn-primary'>Add products</Link>
               { box.products.map((product) => {
                 return <div key={product._id}>
                     <p>{product.productId.name}</p>

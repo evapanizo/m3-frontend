@@ -60,7 +60,6 @@ Ugly Veggie users can select the box they are interested in and fill it with any
 
 ## Components
 - NavBar
-- Footer
 - Auth Form
 - Slider Box
 - Box Element

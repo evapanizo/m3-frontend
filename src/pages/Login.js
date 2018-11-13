@@ -86,7 +86,7 @@ class Login extends Component {
                  required/>
             { isErrorPassword ? <p className="error-sms">Password is not correct</p> : null }
           </div>
-          <input type="submit" value="Login" className="btn btn-success giant-btn"/>
+          <input type="submit" value="Login" className="btn btn-primary giant-btn"/>
         </form>
         <Link to='/' className="forgot-pass-text">Forgot your password?</Link>
       </div>

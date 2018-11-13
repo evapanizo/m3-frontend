@@ -48,13 +48,13 @@ class CompletedAccount extends Component {
           <p>{`${user.firstName} ${user.lastName}`}</p>
           <p>{`${deliveryAddress.streetAddress} ${deliveryAddress.postalCode} ${deliveryAddress.city}`}</p>
           <p>{`${deliveryAddress.province} ${deliveryAddress.country}`}</p>
-          <Link to='/account/edit' className='btn btn-success'>Update account</Link>
+          <Link to='/account/edit' className='btn btn-primary'>Update account</Link>
         </section>
         <section>
           <h2>Your box</h2>
           <p>{box.size}</p>
           <p>{`${box.price}€ - ${box.maxQuantity} Kg`}</p>
-          <Link to='/box/change' className='btn btn-success'>Change Box</Link>
+          <Link to='/box/change' className='btn btn-primary'>Change Box</Link>
         </section>
       </div>
     )

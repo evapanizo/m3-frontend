@@ -19,7 +19,7 @@ class CheckoutForm extends Component {
     return (
       <div className="checkout">
         <CardElement />
-        <button className="btn btn-success" onClick={this.handleSubmit}>Checkout</button>
+        <button className="btn btn-primary" onClick={this.handleSubmit}>Checkout</button>
       </div>
     );
   }

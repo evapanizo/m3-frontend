@@ -81,7 +81,7 @@ class Signup extends Component {
                    onChange={this.handleChange} 
                    required/>
           </div>
-          <input type="submit" value="Signup" className="btn btn-success giant-btn"/>
+          <input type="submit" value="Signup" className="btn btn-primary giant-btn"/>
         </form>
       </div>
     )

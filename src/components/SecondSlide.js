@@ -43,7 +43,7 @@ class SecondSlide extends Component {
                 <Field name="deliveryAddress.province" placeholder="Province/State/Region" required/>
                 <Field name="deliveryAddress.city" placeholder="City/Town" required/>
                 <Field name="deliveryAddress.postalCode" type="number" placeholder="Postal Code" required/>
-                <input className="btn btn-success" type="submit" value="Complete"/>
+                <input className="btn btn-primary" type="submit" value="Complete"/>
               </form>
           )}
         />
