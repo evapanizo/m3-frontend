@@ -13,8 +13,8 @@ import { withAuth } from '../lib/authContext';
 class AccountWelcome extends Component {
 
   render() {
-    const { user } = this.props;
-    return !user.completedProfile ? <Redirect to='/account'/> : <div>
+    const { completedProfile } = this.props.user;
+    return !completedProfile ? <Redirect to='/account'/> : <div>
       <Navbar/>
       <h1>Your profile is completed!</h1>
       <Link to='/box/edit'>Fill your box!</Link>

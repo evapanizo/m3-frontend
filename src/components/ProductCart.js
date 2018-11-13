@@ -1,11 +1,12 @@
-
 // Module dependencies
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import {Elements, StripeProvider} from 'react-stripe-elements';
 
 // Project dependencies
-/// Context
-import { withAuth } from '../lib/authContext';
+/// Components
+import PaypalButton from '../components/PaypalButton';
+import CheckoutForm from '../components/CheckoutForm';
 /// Services
 import boxService from '../lib/box-service';
 
@@ -28,16 +29,23 @@ class ProductCart extends Component {
   }
 
   render() {
-    const { productsInBox, payment, fullBox} = this.props;
+    const { productsInBox, payment, fullBox, box} = this.props;
     return !productsInBox.length ? <p className="cart-container">Your box is empty! </p> : <div className="cart-container">
       {productsInBox.map((product) => {
         return <p key={product.productId}>{`${product.productName} x ${product.quantity} kg`}</p>
       })}
       { fullBox ? <p className="error-sms">Your box is full!</p> : null}
-      { payment ? <form onSubmit={this.handleUpdate}><input className="btn btn-success" type="submit" value="update"/></form>: <form onSubmit={this.handleUpdate}><input className="btn btn-success" type="submit" value="Paypal"/></form> }
+      { payment ? <form onSubmit={this.handleUpdate}>
+          <input className="btn btn-success" type="submit" value="update"/>
+        </form> : <StripeProvider apiKey="pk_test_s5qIACMWQnyKhJHuxAjBY2Io">
+          <Elements>
+            <CheckoutForm />
+          </Elements>
+        </StripeProvider>
+      }
     </div>
   }
 }
 
 // Export
-export default withRouter(withAuth(ProductCart));
+export default withRouter(ProductCart);

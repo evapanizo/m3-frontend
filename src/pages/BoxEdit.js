@@ -27,6 +27,36 @@ class BoxEdit extends Component {
     productsInBox: null
   }
 
+  componentDidMount () {
+    boxService.getPopulatedBox()
+      .then( (result) => {
+        const productsInBox = result.products.slice().map( (item) => {
+          return {"productId": item.productId._id,
+          "productName": item.productId.name,
+          "quantity": item.quantity
+          }
+        });
+        boxService.getBox()
+          .then( (box) => {
+            productsService.getProducts()
+            .then ( (products) => {
+              this.setState({
+                isLoading: false,
+                box,
+                products,
+                productsInBox
+              })
+            })
+          })
+      })
+      .catch( error => {
+        console.log(error)
+        this.setState({
+          isLoading: false,
+        })
+      })
+  }
+
   handleSearch = (products) => {
     this.setState({
       products
@@ -72,36 +102,6 @@ class BoxEdit extends Component {
         productsInBox
       })
     }
-  }
-
-  componentDidMount () {
-    boxService.getPopulatedBox()
-      .then( (result) => {
-        const productsInBox = result.products.slice().map( (item) => {
-          return {"productId": item.productId._id,
-          "productName": item.productId.name,
-          "quantity":item.quantity
-          }
-        });
-        boxService.getBox()
-          .then( (box) => {
-            productsService.getProducts()
-            .then ( (products) => {
-              this.setState({
-                isLoading: false,
-                box,
-                products,
-                productsInBox
-              })
-            })
-          })
-      })
-      .catch( error => {
-        console.log(error)
-        this.setState({
-          isLoading: false,
-        })
-      })
   }
 
   handleClickCart = () => {

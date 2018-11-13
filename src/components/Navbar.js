@@ -22,7 +22,7 @@ class Navbar extends Component {
     return (
       <div className="nav-bar">
         <div className="logo-container">
-          <img src={process.env.PUBLIC_URL + '/images/uglyVeggie.png'} 
+          <img src={process.env.PUBLIC_URL + '/images/ugly-veggies.png'} 
              className="nav-logo" 
              alt="Ugly Veggie Logo"/>
         </div>
