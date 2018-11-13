@@ -6,6 +6,7 @@ import { Redirect, Link } from 'react-router-dom';
 //Project dependencies
 /// Components
 import Navbar from '../components/Navbar';
+import Loader from '../components/Loader';
 /// Context
 import { withAuth } from '../lib/authContext';
 /// Service
@@ -37,7 +38,7 @@ class Box extends Component {
   render() {
     const { completedProfile } = this.props.user;
     const { isLoading, box } = this.state;
-    return isLoading ? <h1>Loading...</h1> : <div> 
+    return isLoading ? <Loader/> : <div> 
         {!completedProfile ? <Redirect to='/account' /> : <div>
             <Navbar/>
             <section>

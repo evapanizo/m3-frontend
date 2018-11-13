@@ -8,6 +8,7 @@ import Navbar from '../components/Navbar';
 import SearchBar from '../components/SearchBar';
 import ListOfProducts from '../components/ListOfProducts';
 import ProductCart from '../components/ProductCart';
+import Loader from '../components/Loader';
 /// Context
 import { withAuth } from '../lib/authContext';
 /// Service
@@ -114,7 +115,7 @@ class BoxEdit extends Component {
   render() {
     const { isLoading, box, products, fullBox, cartIsHidden, productsInBox } = this.state;
     const { completedProfile } = this.props.user;
-    return isLoading ? <h1>Loading...</h1> : <div>
+    return isLoading ? <Loader/> : <div>
       {!completedProfile ? <Redirect to='/account'/> : <div className="search-container">
         <Navbar/>
         <SearchBar handleSearch={this.handleSearch}/>

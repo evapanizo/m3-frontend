@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 /// Services
 import authService from '../lib/auth-service';
 import boxService from '../lib/box-service';
+///Components
+import Loader from './Loader';
 
 // CompletedAccount
 class CompletedAccount extends Component {
@@ -40,21 +42,30 @@ class CompletedAccount extends Component {
     const { user, box } = this.state;
     const { deliveryAddress } = this.state.user;
     return (
-      <div>
-        <section>
-          <h2>Your account</h2>
+      <div className="account-container">
+        <section className="account-info">
+          <h2>Account</h2>
+          <p><strong>Contact</strong></p>
           <p>{user.email}</p>
           <p>{user.phone}</p>
+          <p><strong>Delivery Address</strong></p>
           <p>{`${user.firstName} ${user.lastName}`}</p>
           <p>{`${deliveryAddress.streetAddress} ${deliveryAddress.postalCode} ${deliveryAddress.city}`}</p>
           <p>{`${deliveryAddress.province} ${deliveryAddress.country}`}</p>
-          <Link to='/account/edit' className='btn btn-primary'>Update account</Link>
+          <div className="edit-center-container">
+            <Link to='/account/edit' className='btn btn-primary'>Update account</Link>
+          </div>
         </section>
-        <section>
-          <h2>Your box</h2>
-          <p>{box.size}</p>
-          <p>{`${box.price}€ - ${box.maxQuantity} Kg`}</p>
-          <Link to='/box/change' className='btn btn-primary'>Change Box</Link>
+        <section className="plan-info">
+          <h2>Plan Details</h2>
+          <div className="edit-center-container">
+          <img 
+            src={`${process.env.PUBLIC_URL}/images/${box.size}Box.png`} 
+            alt={`${box.size} summary`}
+            className="detail-box-img"
+            />
+            <Link to='/box/change' className='btn btn-primary'>Change Box</Link>
+          </div>
         </section>
       </div>
     )
@@ -62,7 +73,7 @@ class CompletedAccount extends Component {
 
   render () {
     const { isLoading } = this.state;
-    return isLoading ? <h1>Loading...</h1> : this.handleRender()
+    return isLoading ? <Loader/> : this.handleRender()
   }
 }
 

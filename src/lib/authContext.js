@@ -1,6 +1,12 @@
 // Module dependencies
 import React, { Component } from 'react'
+
+// Project dependencies
+/// Components
 import authService from './auth-service';
+import Loader from '../components/Loader'
+
+// Create context objects
 const { Provider, Consumer } = React.createContext();
 
 // withAuth - Returns a component with superpowers (with given props)
@@ -63,7 +69,7 @@ export default class AuthContext extends Component {
 
   render() {
     const { isLoading } = this.state;
-    return isLoading ? <h1>Loading...</h1> : <Provider value={{
+    return isLoading ? <Loader/> : <Provider value={{
       isLogged: this.state.isLogged,
       user: this.state.user,
       logout: this.handleLogOut,

@@ -21,11 +21,13 @@ class Carousel extends Component {
 
   render() {
     const { transition } = this.state;
+    const transitionOne = transition === 1 ? 'transition-1' : '';
+    const transitionTwo = transition === 2 ? 'transition-2' : '';
     return (
       <div className='carousel-container'>
         <nav className="carousel-nav">
-          <span className="dot"></span>
-          <span className="dot"></span>
+          <span className='dot' id={transitionOne}></span>
+          <span className='dot' id={transitionTwo}></span>
           <Link to="/account" className="close">X</Link>
         </nav>
         <Slide transition={transition} setTransition={this.setTransition}/>

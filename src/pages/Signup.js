@@ -81,6 +81,7 @@ class Signup extends Component {
                       required/>
             </div>
             <input type="submit" value="Sign up" className="btn btn-primary form-button"/>
+            <p className="small-text">Already a user?<Link to='/login' className="primary-link"> Log in</Link></p>
           </form>
         </section>
       </div>

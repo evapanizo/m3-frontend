@@ -16,8 +16,10 @@ class AccountWelcome extends Component {
     const { completedProfile } = this.props.user;
     return !completedProfile ? <Redirect to='/account'/> : <div>
       <Navbar/>
-      <h1>Your profile is completed!</h1>
-      <Link to='/box/edit'>Fill your box!</Link>
+      <section className="welcome-container">
+        <h1>Your profile is completed!</h1>
+        <Link to='/box/edit' className="btn btn-primary">Fill your box!</Link>
+      </section>
     </div>
   }
 }

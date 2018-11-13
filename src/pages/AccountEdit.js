@@ -6,10 +6,9 @@ import { Formik, Field } from 'formik';
 // Project dependencies
 /// Components
 import Navbar from '../components/Navbar';
-
+import Loader from '../components/Loader';
 /// Context
 import { withAuth } from '../lib/authContext';
-
 // Services
 import authService from '../lib/auth-service';
 
@@ -87,7 +86,7 @@ class AccountEdit extends Component {
   render() {
     const {isLoading} = this.state;
     const {completedProfile} = this.props.user;
-    return isLoading ? <h1>Loading...</h1> : <div>
+    return isLoading ? <Loader/> : <div>
         <Navbar/>
         {completedProfile ? this.handleEdit() : <Redirect to='/account'/>}
       </div>

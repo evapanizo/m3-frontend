@@ -46,8 +46,8 @@ class FirstSlide extends Component {
   render() {
     const {emptyField} = this.state;
     return (
-      <div>
-        <h2>Choose your box!</h2>
+      <div className="first-slide">
+        <h2>Choose your box</h2>
         <input type="image" 
                src={process.env.PUBLIC_URL + '/images/smallBox.png'}
                onClick={this.handleSmall}
@@ -66,9 +66,9 @@ class FirstSlide extends Component {
                className='box-img'
                alt='Large box logo'
         />
-        {emptyField ? <p className="error-sms">Please, select a box</p> : null}
+        {emptyField ? <p className="error-sms">Please, select a box.</p> : <p className="error-sms"></p>}
         <form onSubmit={this.handleSubmit}>
-          <input className="btn" type="submit" value=">"/>
+          <input className="btn slide-arrow-right" type="submit" value=">"/>
         </form>
 
       </div>

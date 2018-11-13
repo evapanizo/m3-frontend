@@ -83,10 +83,11 @@ class Login extends Component {
                   value={password} 
                   onChange={this.handleChange} 
                   required/>
-              { isErrorPassword ? <p className="error-sms">Password is not correct</p> : <p className="error-sms"></p> }
+              { isErrorPassword ? <p className="error-sms">Username or password are not correct</p> : <p className="error-sms"></p> }
             </div>
-            <input type="submit" value="Log in" className="btn btn-primary"/>
+            <input type="submit" value="Log in" className="btn btn-primary login-btn"/>
           </form>
+          <p className="small-text">Are you new?<Link to='/signup' className="primary-link"> Sign up</Link></p>
           <Link to='/' className="small-text primary-link">Forgot your password?</Link>
         </section>
         </div>

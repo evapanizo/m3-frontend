@@ -2,6 +2,10 @@
 import React, { Component } from 'react';
 import { Formik, Field } from 'formik';
 
+// Project dependecies
+// Components
+import Loader from './Loader';
+
 class SecondSlide extends Component {
 
   handleSubmit = (values) => {
@@ -28,26 +32,26 @@ class SecondSlide extends Component {
       },
       phone:''
     }
-    return isLoading ? <h1>Loading...</h1> : <div>
+    return isLoading ? <Loader/> : <div className="second-slide">
         <h2>Set up your delivery</h2>
         <Formik
           initialValues={initialValues}
           onSubmit={this.handleSubmit}
           render={(props) => (
               <form onSubmit={props.handleSubmit}>
-                <Field name="firstName" placeholder="First Name" required/>
-                <Field name="lastName" placeholder="Last Name" required/>
-                <Field name="phone" type="number" placeholder="Phone" required/>
-                <Field name="deliveryAddress.streetAddress" placeholder="Street Address" required/>
-                <Field name="deliveryAddress.country" placeholder="Country" required/>
-                <Field name="deliveryAddress.province" placeholder="Province/State/Region" required/>
-                <Field name="deliveryAddress.city" placeholder="City/Town" required/>
-                <Field name="deliveryAddress.postalCode" type="number" placeholder="Postal Code" required/>
-                <input className="btn btn-primary" type="submit" value="Complete"/>
+                <Field className="form-control space-input" name="firstName" placeholder="First Name" required/>
+                <Field className="form-control space-input" name="lastName" placeholder="Last Name" required/>
+                <Field className="form-control space-input" name="phone" type="number" placeholder="Phone" required/>
+                <Field className="form-control space-input" name="deliveryAddress.streetAddress" placeholder="Street Address" required/>
+                <Field className="form-control space-input" name="deliveryAddress.country" placeholder="Country" required/>
+                <Field className="form-control space-input" name="deliveryAddress.province" placeholder="Province/State/Region" required/>
+                <Field className="form-control space-input" name="deliveryAddress.city" placeholder="City/Town" required/>
+                <Field className="form-control space-input" name="deliveryAddress.postalCode" type="number" placeholder="Postal Code" required/>
+                <input className="btn btn-primary slide-btn" type="submit" value="Complete"/>
               </form>
           )}
         />
-        <button className='btn' onClick={this.setTransition}>{"<"}</button>
+        <button className='btn slide-arrow-left' onClick={this.setTransition}>{"<"}</button>
         </div>
   }
 }

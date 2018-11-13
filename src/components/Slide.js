@@ -71,9 +71,9 @@ class Slide extends Component {
 
   render() {
     return (
-      <section>
+      <div className="second-slide">
         {this.handleTransition()}
-      </section>
+      </div>
     )
   }
 }

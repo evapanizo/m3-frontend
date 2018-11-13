@@ -31,9 +31,13 @@ class BurgerMenu extends Component {
              onClick={this.handleClick}
              />
         <ul className={`menu ${visible}`}>
-          <Link to='/account' className="menu-link">My account</Link> 
-          <Link to='/box' className="menu-link">My Box</Link>
-          <p onClick={this.props.logout} className="menu-link link-p">Logout</p>
+          <Link to='/account' className="menu-link">Account</Link> 
+          <Link to='/box' className="menu-link">Box</Link>
+          <img src={process.env.PUBLIC_URL + '/images/logout-icon.png'}
+             alt="Logout icon"
+             className="logout-icon"
+             onClick={this.props.logout}
+             />
         </ul>
       </div>
     )
