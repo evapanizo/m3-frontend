@@ -17,8 +17,8 @@ class Login extends Component {
   state = {
     email: '',
     password: '',
-    isErrorEmail: false,
-    isErrorPassword: false,
+    isErrorEmailPassword: false,
+    isEmpty: false
   }
 
   handleFormSubmit = (event) => {
@@ -27,8 +27,8 @@ class Login extends Component {
     const {setUser} = this.props;
 
     this.setState({
-      isErrorEmail: false,
-      isErrorPassword: false
+      isErrorEmailPassword: false,
+      isEmpty: false,
     });
 
     auth.login({ email, password })
@@ -36,20 +36,29 @@ class Login extends Component {
       this.setState({
         email: '',
         password: '',
-        isErrorEmail: false,
-        isErrorPassword: false,
       });
       setUser(user);
     })
     .catch( (error) => {
-      const {isErrorEmail, isErrorPassword} = helpers.handleError(error);
+      const {isErrorEmailPassword, isEmpty} = helpers.handleError(error);
       this.setState({
         email: '',
         password: '',
-        isErrorEmail,
-        isErrorPassword
+        isErrorEmailPassword, 
+        isEmpty
       })
     });
+  }
+
+  handleError = () => {
+    const {isErrorEmailPassword, isEmpty} = this.state;
+    if(isEmpty){
+      return 'Username and/or password are empty'
+    } else if (isErrorEmailPassword) {
+      return 'Username and/or password are invalid'
+    } else {
+      return ''
+    }
   }
 
   handleChange = (event) => {  
@@ -58,7 +67,8 @@ class Login extends Component {
   }
 
   render() {
-    const { email, password, isErrorPassword, isErrorEmail} = this.state;
+    const { email, password } = this.state;
+    const error = this.handleError();
     return (
       <div>
         <Navbar isLogSign/>
@@ -67,23 +77,20 @@ class Login extends Component {
           <form onSubmit={this.handleFormSubmit}>
             <div className="form-group">
               <input type="email" 
-                    className="form-control" 
+                    className="form-control space-input-3" 
                     name="email" 
                     placeholder="Email" 
                     value={email} 
-                    onChange={this.handleChange}
-                    required/>
-              { isErrorEmail ? <p className="error-sms">This email is not registered in the database</p> : <p className="error-sms"></p> }
+                    onChange={this.handleChange}/>
             </div>
             <div className="form-group">
             <input type="password" 
-                  className="form-control" 
+                  className="form-control"  
                   name="password" 
                   placeholder="Password" 
                   value={password} 
-                  onChange={this.handleChange} 
-                  required/>
-              { isErrorPassword ? <p className="error-sms">Username or password are not correct</p> : <p className="error-sms"></p> }
+                  onChange={this.handleChange}/>
+            { error ? <p className="error-sms">{error}</p> : <p className="error-sms"></p> }
             </div>
             <input type="submit" value="Log in" className="btn btn-primary login-btn"/>
           </form>

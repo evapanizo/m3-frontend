@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 
 // Project dependencies
+/// Components
+import Loader from '../components/Loader';
 /// Helpers
 import helpers from '../helpers/helpers';
 // Context
@@ -17,25 +19,52 @@ class BoxForm extends Component {
   state = {
     inputValue: '',
     emptyField: false,
+    samePlan: false,
+    isLoading: true,
+    box: null
   }
 
   // Functions to handle image selection
   handleSmall = () => {
-    this.setState({
-      inputValue: 'small'
-    })
+    const {size} = this.state.box
+    if(size === 'small'){
+      this.setState({
+        samePlan: 'true'
+      })
+    } else {
+      this.setState({
+        inputValue: 'small',
+        samePlan: false
+      })
+    }
   }
 
   handleMedium = () => {
-    this.setState({
-      inputValue: 'medium'
-    })
+    const {size} = this.state.box
+    if(size === 'medium'){
+      this.setState({
+        samePlan: 'true'
+      })
+    } else {
+      this.setState({
+        inputValue: 'medium',
+        samePlan: false
+      })
+    }
   }
 
   handleLarge = () => {
-    this.setState({
-      inputValue: 'large'
-    })
+    const {size} = this.state.box
+    if(size === 'large'){
+      this.setState({
+        samePlan: 'true'
+      })
+    } else {
+      this.setState({
+        inputValue: 'large',
+        samePlan: false
+      })
+    }
   }
   
   // Handle submit - If empty, print error message. Else, updates box (empty).
@@ -67,11 +96,26 @@ class BoxForm extends Component {
         });
     }
   }
+  
+  componentDidMount () {
+    boxService.getBox()
+    .then( (box) => {
+      this.setState({
+        box,
+        isLoading: false,
+      })
+    })
+    .catch((error) => {
+      console.log(error)
+      this.setState({
+        isLoading: false,
+      })
+    })
+  }
 
   render() {
-    const {emptyField} = this.state;
-    return (
-      <div className="change-box-container">
+    const {emptyField, isLoading, samePlan} = this.state;
+    return isLoading ? <Loader/> : <div className="change-box-container">
         <h2>Choose your box</h2>
         <input type="image" 
                src={process.env.PUBLIC_URL + '/images/smallBox.png'}
@@ -92,13 +136,20 @@ class BoxForm extends Component {
                alt='Large box logo'
         />
         {emptyField ? <p className="error-sms">Please, select a box.</p> : <p className="error-sms"></p>}
-        <form onSubmit={this.handleSubmit}>
-          <input className="btn btn-primary change-btn" type="submit" value="change plan"/>
-        </form>
-        <p className="small-text">Notice that if you change your plan, your weekly payment will 
-        be canceled until you fill your box again.</p>
+        { samePlan ? <div className="selection">
+            <form onSubmit={this.handleSubmit}>
+                <input className="btn btn-primary change-btn" type="submit" value="CONFIRM"/>
+              </form>   
+              <p className="small-text warning">If you select the same plan, your box will be emptied and your payment cancelled.</p> 
+          </div> : <div className="selection">
+            <form onSubmit={this.handleSubmit}>
+              <input className="btn btn-primary change-btn" type="submit" value="change plan"/>
+            </form>   
+            <p className="small-text">Notice that if you change your plan, your weekly payment will 
+            be canceled until you fill your box again.</p>
+          </div>    
+        }
       </div>
-    )
   }
 }
 

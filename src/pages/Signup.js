@@ -18,7 +18,8 @@ class Signup extends Component {
   state = {
     email: '',
     password: '',
-    isAlreadyUser: false
+    isAlreadyUser: false,
+    isEmpty: false
   };
 
   handleFormSubmit = (event) => {
@@ -27,7 +28,8 @@ class Signup extends Component {
     const {setUser} = this.props;
 
     this.setState({
-      isAlreadyUser: false
+      isAlreadyUser: false,
+      isEmpty: false,
     });
     
     auth.signup({ email, password })
@@ -39,11 +41,12 @@ class Signup extends Component {
         setUser(user);
       })
       .catch( (error) => {
-        const {isAlreadyUser} = helpers.handleError(error);
+        const {isAlreadyUser, isEmpty} = helpers.handleError(error);
         this.setState({
           email: '',
           password: '',
-          isAlreadyUser
+          isAlreadyUser,
+          isEmpty
         });
       });
   }
@@ -53,8 +56,20 @@ class Signup extends Component {
     this.setState({[name]: value});
   }
 
+  handleError = () => {
+    const { isAlreadyUser , isEmpty} = this.state;
+    if(isEmpty){
+      return 'Username and/or password are empty'
+    } else if (isAlreadyUser) {
+      return 'User already registered in the database'
+    } else {
+      return ''
+    }
+  }
+
   render() {
-    const { email, password, isAlreadyUser } = this.state;
+    const { email, password } = this.state;
+    const error = this.handleError();
     return (
       <div>
         <Navbar isLogSign/>
@@ -63,13 +78,12 @@ class Signup extends Component {
           <form onSubmit={this.handleFormSubmit}>
             <div className="form-group">
               <input type="email" 
-                      className="form-control" 
+                      className="form-control space-input-3" 
                       name="email" 
                       placeholder="Email" 
                       value={email} 
                       onChange={this.handleChange}
-                      required/>  
-              { isAlreadyUser ? <p className="error-sms">An existing user is registered with this email</p> : <p className="error-sms"></p> }
+            />  
             </div>
             <div className="form-group">
               <input type="password" 
@@ -78,9 +92,10 @@ class Signup extends Component {
                       placeholder="Password" 
                       value={password}
                       onChange={this.handleChange} 
-                      required/>
+            />
+            { error ? <p className="error-sms">{error}</p> : <p className="error-sms"></p> }
             </div>
-            <input type="submit" value="Sign up" className="btn btn-primary form-button"/>
+            <input type="submit" value="Sign up" className="btn btn-primary login-btn"/>
             <p className="small-text">Already a user?<Link to='/login' className="primary-link"> Log in</Link></p>
           </form>
         </section>

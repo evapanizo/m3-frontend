@@ -1,21 +1,24 @@
 const handleError = (error) => {
-  let isErrorEmail = false;
-  let isErrorPassword = false;
+  let isErrorEmailPassword = false;
   let isAlreadyUser = false;
+  let isEmpty = false;
   switch (error.response.data.error) {
     case 'user-not-found':
-      isErrorEmail = true;
+      isErrorEmailPassword = true;
       break;
     case 'wrong-password':
-      isErrorPassword = true;
+      isErrorEmailPassword = true;
       break;
     case 'email-not-unique':
-      isAlreadyUser= true;
+      isAlreadyUser = true;
+      break;
+    case 'empty':
+      isEmpty = true;
       break;
     default:
       console.log(error);
   }
-  return {isErrorEmail, isErrorPassword, isAlreadyUser};
+  return {isErrorEmailPassword, isAlreadyUser, isEmpty};
 }
 
 const handleBoxCreation = (size) => {
