@@ -4,7 +4,6 @@ import {CardElement, injectStripe} from 'react-stripe-elements';
 class CheckoutForm extends Component {
   
   handleSubmit = (event) => {
-    console.log(this.props.stripe)
     // let {token} = this.props.stripe.createToken();
     // .then()
     // let response = await fetch("/charge", {
@@ -12,7 +11,13 @@ class CheckoutForm extends Component {
     //   headers: {"Content-Type": "text/plain"},
     //   body: token.id
     // });
-    // if (response.ok) console.log("Purchase Complete!")
+    // if (response.ok) console.log("Purchase Complete!")  
+     
+    //   <StripeProvider apiKey="pk_test_s5qIACMWQnyKhJHuxAjBY2Io">
+    //   <Elements>
+    //     <CheckoutForm/>
+    //   </Elements>
+    // </StripeProvider>
   }
 
   render() {

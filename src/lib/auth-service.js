@@ -38,6 +38,12 @@ class Auth {
     return this.auth.get('/auth/me')
     .then(response => response.data)
   }
+
+  updatePayment(payment) {
+    return this.auth.put('/auth/payment', payment)
+    .then(response => response.data)
+  }
+
 }
 
 // Instance of the service

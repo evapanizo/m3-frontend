@@ -5,8 +5,11 @@ import { withRouter } from 'react-router-dom';
 // Project dependencies
 /// Helpers
 import helpers from '../helpers/helpers';
+// Context
+import {withAuth} from '../lib/authContext';
 // Services
 import boxService from '../lib/box-service';
+import authService from '../lib/auth-service';
 
 // Box Form
 class BoxForm extends Component {
@@ -48,7 +51,13 @@ class BoxForm extends Component {
       box["products"] = [];
       boxService.editBox(box)
         .then( () => {
-          this.props.history.push('/account')
+          authService.updatePayment({payment: 'false'})
+          .then( (user) => {
+            const {setUser} = this.props;
+            setUser(user);
+            this.props.history.push('/account')
+          })
+          .catch( (error) => console.log(error))
         })
       .catch((error) => {
           this.setState({
@@ -94,4 +103,4 @@ class BoxForm extends Component {
 }
 
 // Export
-export default withRouter(BoxForm);
+export default withRouter(withAuth(BoxForm));
