@@ -85,7 +85,7 @@ class AccountEdit extends Component {
                 <Field className="form-control space-input-2" name="deliveryAddress.province" placeholder="Province/State/Region"/>
                 <Field className="form-control space-input-2" name="deliveryAddress.city" placeholder="City/Town"/>
                 <Field className="form-control space-input-4" name="deliveryAddress.postalCode" type="number" placeholder="Postal Code"/>
-                { error ? <p className="error-sms little-error">{error}</p> : <p className="error-sms little-error"></p>}
+                { error ? <p className="error-sms">{error}</p> : <p className="error-sms"></p>}
                 <input className="btn btn-primary" type="submit" value="Update"/>
               </form>
           )}

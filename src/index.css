@@ -12,8 +12,6 @@ html {
 body {
   margin: 0 auto;
   padding: 0;
-  width: 100%;
-  height: 100%;
 }
 
 img {
@@ -182,7 +180,7 @@ button, input {
   top: 50px;
   right: 0;
   transform: translateX(100%);
-  transition: all .5s; 
+  transition: all .2s; 
   text-align: center;
   padding: 0;
 }
@@ -208,14 +206,14 @@ button, input {
 
 .what-is {
   position: fixed;
-  top: 140px;
+  top: 160px;
   background-image: url('/../images/home-image.jpeg');
-  height: 330px;
   background-size: cover;
   background-position: bottom;
   width: 100%;
+  height: 330px;
   text-align: center;
-  padding: 10px 0px;
+  padding: 30px 0px;
 }
 
 .home-text {
@@ -229,7 +227,7 @@ button, input {
   position: fixed;
   bottom: 0px;
   width: 100%;
-  padding: 20px 0px 80px 0px;
+  padding: 20px 0px 60px 0px;
   background-color: white;
 }
 
@@ -267,6 +265,7 @@ button, input {
 
 .first-slide, .second-slide {
   text-align: center;
+  position: relative;
 }
 
 .slide-btn {
@@ -275,16 +274,16 @@ button, input {
 
 .slide-arrow-right {
   color: #444343;
-  position: fixed;
-  top: 350px;
-  right: 10px;
+  position: absolute;
+  top: 150px;
+  right: -10px;
 }
 
 .slide-arrow-left {
   color: #444343;
-  position: fixed;
-  top: 350px;
-  left: 10px;
+  position: absolute;
+  top: 150px;
+  left: -10px;
 }
 
 .box-img {
@@ -294,13 +293,14 @@ button, input {
 }
 
 .carousel-nav {
+  position: relative;
   text-align: center;
   padding-top: 15px;
 }
 
 .carousel-container {
   border-radius: 20px;
-  margin: 150px 25px 0px 25px;
+  margin: 110px 25px 0px 25px;
   height: 450px;
   background-color: whitesmoke;
 }
@@ -317,8 +317,8 @@ button, input {
 .close {
   color: #727171;
   text-decoration: none;
-  position: fixed;
-  right: 60px;
+  position: absolute;
+  right: 20px;
   font-weight: 900;
   font-size: 1.3em;
 }
@@ -356,8 +356,8 @@ button, input {
 } 
 
 .detail-box-img {
+  width: 60%;
   border-radius: 40px;
-  width: 70%;
   margin-bottom: 15px;
 }
 
@@ -392,7 +392,7 @@ button, input {
 }
 
 .change-btn {
-  margin: 15px 0px;
+  margin: 0px 0px 15px 0px;
 }
 
 /* ---- Box ---- */
