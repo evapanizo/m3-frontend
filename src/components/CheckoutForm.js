@@ -18,8 +18,10 @@ class CheckoutForm extends Component {
   render() {
     return (
       <div className="checkout">
-        <CardElement />
-        <button className="btn btn-primary" onClick={this.handleSubmit}>Checkout</button>
+        <div className="payment-method">
+          <CardElement className="card-form"/>
+        </div>
+        <button className="btn btn-primary checkout-btn" onClick={this.handleSubmit}>Checkout</button>
       </div>
     );
   }

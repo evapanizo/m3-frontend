@@ -76,9 +76,13 @@ class BoxEdit extends Component {
         newBoxProduct.quantity = box.maxQuantity-currentTotalQuantity;
         box.products.push(newBoxProduct);
         productsInBox.push({...newBoxProduct, productName});
+        box.products[0].quantity = Math.round(box.products[0].quantity*100)/100
+        productsInBox[0].quantity = Math.round(productsInBox[0].quantity*100)/100
       } else if (index !== -1){
         box.products[index].quantity += box.maxQuantity-currentTotalQuantity;
         productsInBox[index].quantity += box.maxQuantity-currentTotalQuantity;
+        box.products[index].quantity = Math.round(box.products[index].quantity*100)/100
+        productsInBox[index].quantity = Math.round(productsInBox[index].quantity*100)/100
       } 
       this.setState({
         fullBox: true,
@@ -89,9 +93,13 @@ class BoxEdit extends Component {
       if (index === -1) {
         box.products.push(newBoxProduct);
         productsInBox.push({...newBoxProduct, productName});
+        box.products[0].quantity = Math.round(box.products[0].quantity*100)/100
+        productsInBox[0].quantity = Math.round(productsInBox[0].quantity*100)/100
       } else {
         box.products[index].quantity += newBoxProduct.quantity;
         productsInBox[index].quantity += newBoxProduct.quantity;
+        box.products[index].quantity = Math.round(box.products[index].quantity*100)/100
+        productsInBox[index].quantity = Math.round(productsInBox[index].quantity*100)/100
         if(box.products[index].quantity <= 0){
           box.products.splice(index, 1)
           productsInBox.splice(index, 1)
@@ -115,22 +123,23 @@ class BoxEdit extends Component {
   render() {
     const { isLoading, box, products, fullBox, cartIsHidden, productsInBox } = this.state;
     const { completedProfile } = this.props.user;
-    return isLoading ? <Loader/> : <div>
-      {!completedProfile ? <Redirect to='/account'/> : <div className="search-container">
+    return isLoading ? <Loader/> : !completedProfile ? <Redirect to='/account'/> : <div className="search-container">
         <Navbar/>
-        <SearchBar handleSearch={this.handleSearch}/>
-        <input type="image" 
-               className="cart-icon" 
-               src={process.env.PUBLIC_URL + `/images/${box.size}Box.png`} 
-               alt={`${box.size} box`}
-               onClick={this.handleClickCart}/>
+        <section className="add-product-nav">
+          <SearchBar handleSearch={this.handleSearch}/>
+          <div className="product-cart-logo-container">
+            <img type="image" 
+                  className="cart-icon" 
+                  src={process.env.PUBLIC_URL + `/images/box.png`} 
+                  alt={`${box.size} box`}
+                  onClick={this.handleClickCart}/>
+          </div>
+        </section>
         <section className="products-window">
           <ListOfProducts products={products} box={box} fullBox={fullBox} handleAddToBox={this.handleAddToBox}/>
         </section>
-        {cartIsHidden ? null : <ProductCart className="cart" productsInBox={productsInBox} box={box} fullBox={fullBox}/>}
+        <ProductCart cartIsHidden={cartIsHidden} handleClickCart={this.handleClickCart} productsInBox={productsInBox} box={box} fullBox={fullBox}/>
       </div>
-    }
-    </div>
   }
 }
 

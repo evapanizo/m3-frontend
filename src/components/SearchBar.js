@@ -26,9 +26,15 @@ class SearchBar extends Component {
   render () {
     const { inputValue } = this.state;
     return (
-      <div>
-        <img src="/" alt="Magnifying glass icon"/>
-        <input type="text" value={inputValue} onChange={this.handleChange}/>
+      <div className="search-bar">
+        <img src={process.env.PUBLIC_URL + '/images/search-icon.png'} 
+             alt="Search icon"
+             className="search-icon"/>
+        <input className="form-control"
+               placeholder="Search product" 
+               type="text" 
+               value={inputValue} 
+               onChange={this.handleChange}/>
       </div>  
     )
   }

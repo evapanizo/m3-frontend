@@ -48,7 +48,7 @@ class Product extends Component {
         inputValue: 0,
       })
     } else {
-      handleAddToBox(parseFloat(inputValue), product._id, product.name)
+      handleAddToBox(parseFloat(Math.round(100*inputValue)/100), product._id, product.name)
       return this.setState({
         inputValue: 0,
         isEmpty: false,
@@ -61,17 +61,26 @@ class Product extends Component {
     const { product } = this.props;
     const { inputValue, isEmpty, isNegative, isFull} = this.state;
     return (
-      <div className='product-container'>
-        <p>{product.name}</p>
-        <img src={product.image} alt={`${product.name}`}/>
-        <form onSubmit={this.handleSubmit}>
-          <input type="number" value={inputValue} onChange={this.handleChange}/>
-          {isEmpty ? <p className="error-sms">Quantity is empty</p> : null }
-          {isNegative ? <p className="error-sms">Can't be negative</p> : null }
-          {isFull ? <p className="error-sms">Box is full</p> : null }
-          <input type="submit" value="Add to box" className="btn btn-primary"/>
-        </form>
-      </div>
+      <article className='product-container'>
+        <div className="product-image-add">
+          <img src={product.image} alt={`${product.name}`}/>
+        </div>
+        <div className="product-info-add">
+          <p className="product-name">{product.name}</p>
+          <form onSubmit={this.handleSubmit}>
+            <input className="form-control input-product" type="number" value={inputValue} onChange={this.handleChange}/>
+            <p className="error-sms">
+              {isEmpty ? 'Quantity is empty': null }
+              {isNegative ? "Can't be negative" : null }
+              {isFull ? "Box is full" : null }
+            </p>
+            <input type="image" 
+            src={process.env.PUBLIC_URL + '/images/add.png'}
+            className='add-icon-product'
+            alt={`${product.name}`}/>
+          </form>
+        </div>
+      </article>
     )
   }
 }

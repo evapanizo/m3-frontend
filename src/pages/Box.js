@@ -39,22 +39,37 @@ class Box extends Component {
     const { completedProfile } = this.props.user;
     const { isLoading, box } = this.state;
     return isLoading ? <Loader/> : <div> 
-        {!completedProfile ? <Redirect to='/account' /> : <div>
+        {!completedProfile ? <Redirect to='/account' /> : <div className="box-page-container">
             <Navbar/>
-            <section>
+            <section className="box-container">
               <h1>Box</h1>
-              <p>{box.size}</p>
-              <p>{`${box.price} €`}</p>
-              <p>{`${box.maxQuantity} kg`}</p>
+              <div className="box-images-container">
+                <img src={process.env.PUBLIC_URL + '/images/largeBox.png'}
+                className='box-img'
+                alt='Large box logo'
+                />
+                <Link to='/box/edit'>              
+                  <img src={process.env.PUBLIC_URL + '/images/add.png'}
+                  className='add-icon'
+                  alt='Add icon'
+                  />
+                </Link>
+              </div>
             </section>
-            <section>
-              <Link to='/box/edit' className='btn btn-primary'>Add products</Link>
-              { box.products.map((product) => {
-                return <div key={product._id}>
-                    <p>{product.productId.name}</p>
-                    <p>{product.quantity}</p>
-                  </div>
-              })}
+            <section className="products-container">
+              <h1>Products</h1>
+              { !box.products.length ? <p>Your box is empty!</p> : box.products.map((product) => {
+                return <div className="product-container" key={product.productId._id}>
+                  <div className="product-image-add">
+                    <img src={product.productId.image} alt={`${product.productId.name}`}/>
+                 </div>
+                 <div className="product-info-add">
+                  <p className="product-name-show">{product.productId.name}</p>
+                  <p className="product-quantity">{`${product.quantity} kg`}</p>
+                </div>
+                </div>
+                })
+              }
             </section>
           </div> 
         }

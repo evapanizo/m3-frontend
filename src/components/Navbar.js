@@ -17,7 +17,7 @@ class Navbar extends Component {
     const companyLogo = !isLogged ? '' : 'nav-logo'
     const logoContainer = !isLogged ? 'logo-container' : ''
     return (
-      <div className="nav-bar">
+      <nav className="nav-bar">
         <div className={logoContainer}>
           <Link to='/'>
             <img src={process.env.PUBLIC_URL + '/images/ugly-veggies.png'} 
@@ -26,7 +26,7 @@ class Navbar extends Component {
           </Link>
         </div>
         {isLogged ? <BurgerMenu/> : null}
-      </div>
+      </nav>
     )
   }
 }

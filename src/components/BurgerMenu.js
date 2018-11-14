@@ -25,7 +25,7 @@ class BurgerMenu extends Component {
     const visible = isVisible ? "open-menu" : "";
     return (
       <div className="burger-menu-container">
-        <img src={process.env.PUBLIC_URL + '/images/menu-icon.png'}
+        <img src={process.env.PUBLIC_URL + '/images/iconmenu.png'}
              alt="Burger menu icon"
              className="menu-icon"
              onClick={this.handleClick}

@@ -62,8 +62,8 @@ class BoxForm extends Component {
   render() {
     const {emptyField} = this.state;
     return (
-      <div>
-        <h2>Choose your box!</h2>
+      <div className="change-box-container">
+        <h2>Choose your box</h2>
         <input type="image" 
                src={process.env.PUBLIC_URL + '/images/smallBox.png'}
                onClick={this.handleSmall}
@@ -82,12 +82,12 @@ class BoxForm extends Component {
                className='box-img'
                alt='Large box logo'
         />
-        <p>Notice that if you change your plan, your weekly payment will 
-          be canceled until you fill your box again. BLA BLA</p>
-        {emptyField ? <p className="error-sms">Please, select a box</p> : null}
+        {emptyField ? <p className="error-sms">Please, select a box.</p> : <p className="error-sms"></p>}
         <form onSubmit={this.handleSubmit}>
-          <input className="btn btn-primary" type="submit" value="Change"/>
+          <input className="btn btn-primary change-btn" type="submit" value="change plan"/>
         </form>
+        <p className="small-text">Notice that if you change your plan, your weekly payment will 
+        be canceled until you fill your box again.</p>
       </div>
     )
   }

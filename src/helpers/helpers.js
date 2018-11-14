@@ -48,7 +48,7 @@ const handleBoxCreation = (size) => {
 const getTotalQuantityOfProducts = (box) => {
   return box.products.reduce( (acc, cval) => {
     const sum = acc+cval.quantity;
-    return sum;
+    return Math.round(sum*100)/100;
   }, 0)
 }
 
