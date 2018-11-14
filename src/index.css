@@ -44,6 +44,28 @@ body {
   margin: 0px 20px;
 }
 
+.error-sms {
+  font-size: 0.7em;
+  color: #E63939;
+  height: 30px;
+  margin-top: 4px;
+}
+
+.ok-sms {
+  font-size: 0.7em;
+  color: #398689;
+  height: 30px;
+  margin-top: 4px;
+  text-align: center;
+}
+
+.parent-sms {
+  text-align: center;
+  margin: 0px 20px;
+  height: 30px;
+  line-height: 15px;
+}
+
 .btn {
   display: inline-block;
   text-align: center;
@@ -146,7 +168,7 @@ button, input {
   align-items: center;
   padding: 15px 20px 0px 20px;
   background-color: white;
-  z-index: 2;
+  z-index: 7;
 }
 
 .menu {
@@ -208,12 +230,6 @@ button, input {
 }
 
 /* ---- Login & Signup ---- */
-.error-sms {
-  font-size: 0.7em;
-  color: #E63939;
-  height: 25px;
-  margin-top: 4px;
-}
 
 .login-text {
   margin-top: 10px;
@@ -304,7 +320,7 @@ button, input {
 }
 
 .space-input {
-  margin: 5px auto;
+  margin: 3px auto;
 }
 
 /* ---- Welcome ---- */
@@ -408,10 +424,6 @@ button, input {
   margin-left: 20px;
 }
 
-.cart-container {
-  width: 30%;
-}
-
 .search-bar input {
   display: inline;
 }
@@ -458,7 +470,7 @@ button, input {
 
 .products-window {
   z-index: 0;
-  padding: 150px 0px 100px 0px;
+  padding: 180px 0px 100px 0px;
 }
 
 .cart-container {
@@ -475,7 +487,7 @@ button, input {
   transition: all .5s; 
   text-align: center;
   padding: 0;
-  z-index: 2;
+  z-index: 6;
 }
 
 .open-cart{
@@ -502,6 +514,15 @@ button, input {
 
 
 /* ---- Products ---- */
+
+.message-bar {
+  position: fixed;
+  top: 120px;
+  background-color: white;
+  width: 100%;
+  z-index: 5;
+  padding: 15px;
+}
 
 .add-icon-product {
   position: absolute;
@@ -535,7 +556,7 @@ button, input {
   width: 50%;
 }
 
-.product-name {
+.product-text {
   padding-left: 10px;
   margin-bottom: 10px; 
 }

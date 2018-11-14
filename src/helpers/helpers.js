@@ -55,9 +55,23 @@ const getTotalQuantityOfProducts = (box) => {
   }, 0)
 }
 
+const validateUserInfo = (values) => {
+  if(values.firstName === '' || values.lastName === '' || values.phone === '' || 
+  values.deliveryAddress.streetAddress === '' || values.deliveryAddress.country === '' || 
+  values.deliveryAddress.province === '' || values.deliveryAddress.city === '' || 
+  values.deliveryAddress.postalCode === '') {
+    return 'Fields are empty'
+  } else {
+    return null
+  }
+
+}
+
+
 // Export
 export default {
   handleError,
   handleBoxCreation,
-  getTotalQuantityOfProducts
+  getTotalQuantityOfProducts,
+  validateUserInfo
 }

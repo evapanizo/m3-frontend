@@ -21,7 +21,7 @@ class Box extends Component {
 
   componentDidMount() {
     boxService.getPopulatedBox()
-      .then( (box) => {
+      .then((box) => {
         this.setState({
           isLoading: false,
           box
@@ -44,7 +44,7 @@ class Box extends Component {
             <section className="box-container">
               <h1>Box</h1>
               <div className="box-images-container">
-                <img src={process.env.PUBLIC_URL + '/images/largeBox.png'}
+                <img src={`${process.env.PUBLIC_URL}images/${box.size}Box.png`}
                 className='box-img'
                 alt='Large box logo'
                 />

@@ -5,12 +5,24 @@ import { Formik, Field } from 'formik';
 // Project dependecies
 // Components
 import Loader from './Loader';
+import helpers from '../helpers/helpers';
 
 class SecondSlide extends Component {
 
+  state = {
+    error: null
+  }
+
   handleSubmit = (values) => {
-    const { handleSubmit} = this.props;
-    handleSubmit(values);
+    const { handleSubmit } = this.props;
+    const error = helpers.validateUserInfo(values)
+    if(error) {
+      this.setState({
+        error
+      })
+    } else {
+      handleSubmit(values);
+    }
   }
 
   setTransition = () => {
@@ -20,6 +32,7 @@ class SecondSlide extends Component {
 
   render() {
     const {isLoading} = this.props;
+    const {error} = this.state;
     const initialValues = {
       firstName: '',
       lastName: '',
@@ -37,17 +50,19 @@ class SecondSlide extends Component {
         <Formik
           initialValues={initialValues}
           onSubmit={this.handleSubmit}
+          error={error}
           render={(props) => (
               <form onSubmit={props.handleSubmit}>
-                <Field className="form-control space-input" name="firstName" placeholder="First Name" required/>
-                <Field className="form-control space-input" name="lastName" placeholder="Last Name" required/>
-                <Field className="form-control space-input" name="phone" type="number" placeholder="Phone" required/>
-                <Field className="form-control space-input" name="deliveryAddress.streetAddress" placeholder="Street Address" required/>
-                <Field className="form-control space-input" name="deliveryAddress.country" placeholder="Country" required/>
-                <Field className="form-control space-input" name="deliveryAddress.province" placeholder="Province/State/Region" required/>
-                <Field className="form-control space-input" name="deliveryAddress.city" placeholder="City/Town" required/>
-                <Field className="form-control space-input" name="deliveryAddress.postalCode" type="number" placeholder="Postal Code" required/>
-                <input className="btn btn-primary slide-btn" type="submit" value="Complete"/>
+                <Field className="form-control space-input" name="firstName" placeholder="First Name"/>
+                <Field className="form-control space-input" name="lastName" placeholder="Last Name"/>
+                <Field className="form-control space-input" name="phone" type="number" placeholder="Phone"/>
+                <Field className="form-control space-input" name="deliveryAddress.streetAddress" placeholder="Street Address"/>
+                <Field className="form-control space-input" name="deliveryAddress.country" placeholder="Country"/>
+                <Field className="form-control space-input" name="deliveryAddress.province" placeholder="Province/State/Region"/>
+                <Field className="form-control space-input" name="deliveryAddress.city" placeholder="City/Town"/>
+                <Field className="form-control space-input" name="deliveryAddress.postalCode" type="number" placeholder="Postal Code"/>
+                { error ? <p className="error-sms">{error}</p> : <p className="error-sms"></p>}
+                <input className="btn btn-primary" type="submit" value="Complete"/>
               </form>
           )}
         />

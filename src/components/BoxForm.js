@@ -29,12 +29,14 @@ class BoxForm extends Component {
     const {size} = this.state.box
     if(size === 'small'){
       this.setState({
-        samePlan: 'true'
+        samePlan: true,
+        emptyField: false,
       })
     } else {
       this.setState({
         inputValue: 'small',
-        samePlan: false
+        samePlan: false,
+        emptyField: false
       })
     }
   }
@@ -43,12 +45,14 @@ class BoxForm extends Component {
     const {size} = this.state.box
     if(size === 'medium'){
       this.setState({
-        samePlan: 'true'
+        samePlan: true,
+        emptyField: false,
       })
     } else {
       this.setState({
         inputValue: 'medium',
-        samePlan: false
+        samePlan: false,
+        emptyField: false
       })
     }
   }
@@ -57,12 +61,14 @@ class BoxForm extends Component {
     const {size} = this.state.box
     if(size === 'large'){
       this.setState({
-        samePlan: 'true'
+        samePlan: true,
+        emptyField: false,
       })
     } else {
       this.setState({
         inputValue: 'large',
-        samePlan: false
+        samePlan: false,
+        emptyField: false
       })
     }
   }
