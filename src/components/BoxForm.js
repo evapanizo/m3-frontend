@@ -29,6 +29,7 @@ class BoxForm extends Component {
     const {size} = this.state.box
     if(size === 'small'){
       this.setState({
+        inputValue: 'small',
         samePlan: true,
         emptyField: false,
       })
@@ -45,6 +46,7 @@ class BoxForm extends Component {
     const {size} = this.state.box
     if(size === 'medium'){
       this.setState({
+        inputValue: 'medium',
         samePlan: true,
         emptyField: false,
       })
@@ -61,6 +63,7 @@ class BoxForm extends Component {
     const {size} = this.state.box
     if(size === 'large'){
       this.setState({
+        inputValue: 'large',
         samePlan: true,
         emptyField: false,
       })

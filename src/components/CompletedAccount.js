@@ -1,6 +1,6 @@
 // Module dependencies
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 // Project dependencies
 /// Services
@@ -66,7 +66,7 @@ class CompletedAccount extends Component {
             />
             <Link to='/box/change' className='btn btn-primary'>Change Box</Link>
           </div>
-        </section>
+          </section>
       </div>
     )
   }
@@ -78,4 +78,4 @@ class CompletedAccount extends Component {
 }
 
 // Export
-export default CompletedAccount;
+export default withRouter(CompletedAccount);
