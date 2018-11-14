@@ -55,7 +55,7 @@ class ProductCart extends Component {
         { fullBox ? <p className="error-sms">Your box is full!</p> : null}
       </section>
       <section className="checkout">
-        { true ? <form onSubmit={this.handleUpdate}>
+        { payment ? <form onSubmit={this.handleUpdate}>
             <input className="btn btn-primary" type="submit" value="update"/>
           </form> : <StripeProvider apiKey="pk_test_s5qIACMWQnyKhJHuxAjBY2Io">
             <Elements>
