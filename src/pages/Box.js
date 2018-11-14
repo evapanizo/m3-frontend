@@ -49,7 +49,7 @@ class Box extends Component {
                 alt='Large box logo'
                 />
                 <Link to='/box/edit'>              
-                  <img src={process.env.PUBLIC_URL + '/images/add.png'}
+                  <img src={process.env.PUBLIC_URL + '/images/plus.png'}
                   className='add-icon'
                   alt='Add icon'
                   />

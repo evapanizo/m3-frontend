@@ -66,7 +66,7 @@ class Product extends Component {
     return (
       <article className='product-container'>
         <div className="product-image-add">
-          <img src={product.image} alt={`${product.name}`}/>
+          <img src={`${process.env.PUBLIC_URL}${product.image}`} alt={`${product.name}`}/>
         </div>
         <div className="product-info-add">
           <p className="product-text">{product.name}</p>
@@ -78,7 +78,7 @@ class Product extends Component {
               {isFull ? "Box is full" : null }
             </p>
             <input type="image" 
-            src={process.env.PUBLIC_URL + '/images/add.png'}
+            src={process.env.PUBLIC_URL + '/images/plus.png'}
             className='add-icon-product'
             alt={`${product.name}`}/>
           </form>

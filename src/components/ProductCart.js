@@ -8,6 +8,8 @@ import { withAuth } from '../lib/authContext';
 /// Services
 import boxService from '../lib/box-service';
 import authService from '../lib/auth-service';
+/// Helpers
+import helpers from '../helpers/helpers';
 
 class ProductCart extends Component {
 
@@ -26,7 +28,6 @@ class ProductCart extends Component {
         console.log(error)
       })
   }
-
 
   handleCheckout = (event) => {
     event.preventDefault();
@@ -47,17 +48,8 @@ class ProductCart extends Component {
       .catch((error) => console.log(error))
   }
   
-  totalQuantity = () => {
-    const { productsInBox } = this.props;
-    let totalQuantity = 0;
-    productsInBox.forEach( product => {
-      totalQuantity += product.quantity;
-    })
-    return totalQuantity;
-  }
-
   render() {
-    const { productsInBox, fullBox, cartIsHidden, handleClickCart, user} = this.props;
+    const { productsInBox, fullBox, cartIsHidden, handleClickCart, user, box} = this.props;
     const openCart = cartIsHidden ? '' : 'open-cart';
     return !productsInBox.length ? <div className={`cart-container ${openCart}`}>
         <p className="close" onClick={handleClickCart}>X</p>
@@ -71,7 +63,7 @@ class ProductCart extends Component {
         {productsInBox.map((product) => {
           return <p key={product.productId}>{`${product.productName} x ${product.quantity} kg`}</p>
         })}
-        <p className="total">Total: {this.totalQuantity()} kg</p>
+        <p className="total">Total: {helpers.getTotalQuantityOfProducts(box)} kg</p>
         { fullBox ? <p className="error-sms">Your box is full!</p> : null}
       </section>
       <section className="checkout">
