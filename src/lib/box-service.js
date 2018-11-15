@@ -30,6 +30,7 @@ class Box {
     return this.box.put('/box/edit', box)
       .then(({ data }) => data);
   }
+
 }
 
 // Instance of the service

@@ -550,6 +550,11 @@ button, input {
   border-radius: 5px;
 }
 
+.trash-icon {
+  width: 20px;
+  margin-top: 10px
+}
+
 .product-image-add {
   width: 50%;
 }
