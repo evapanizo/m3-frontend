@@ -95,13 +95,13 @@ class BoxForm extends Component {
             setUser(user);
             this.props.history.push('/account')
           })
-          .catch( (error) => console.log(error))
+          .catch( (error) => console.warn(error))
         })
       .catch((error) => {
           this.setState({
             inputValue: ''
           }) 
-          console.log(error)
+          console.warn(error)
         });
     }
   }
@@ -115,7 +115,7 @@ class BoxForm extends Component {
       })
     })
     .catch((error) => {
-      console.log(error)
+      console.warn(error)
       this.setState({
         isLoading: false,
       })

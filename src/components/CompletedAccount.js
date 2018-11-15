@@ -30,11 +30,11 @@ class CompletedAccount extends Component {
           })
         })
         .catch(error => {
-          console.log(error)
+          console.warn(error)
         })
       })
       .catch( (error) => {
-        console.log(error)
+        console.warn(error)
       })
   }
 

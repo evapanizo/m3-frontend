@@ -25,7 +25,7 @@ class ProductCart extends Component {
         this.props.history.push('/box');
       })
       .catch((error) => {
-        console.log(error)
+        console.warn(error)
       })
   }
 
@@ -43,9 +43,9 @@ class ProductCart extends Component {
             setUser(user);
             this.props.history.push('/box');
           })
-          .catch( (error) => console.log(error))
+          .catch( (error) => console.warn(error))
       })
-      .catch((error) => console.log(error))
+      .catch((error) => console.warn(error))
   }
   
   render() {

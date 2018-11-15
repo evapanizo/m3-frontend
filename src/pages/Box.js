@@ -31,7 +31,7 @@ class Box extends Component {
         this.setState({
           isLoading: false,
         })
-        console.log(error);
+        console.warn(error)
       }) 
   }
 

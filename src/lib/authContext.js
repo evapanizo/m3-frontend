@@ -63,10 +63,10 @@ export default class AuthContext extends Component {
       })
     })
     .catch( (error) => {
-      console.log(error)
+      console.warn(error)
     })
   }
-
+ 
   render() {
     const { isLoading } = this.state;
     return isLoading ? <Loader/> : <Provider value={{

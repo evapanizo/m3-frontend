@@ -51,7 +51,7 @@ class Slide extends Component {
           isLoading: false,
           box: null,
         }) 
-        console.log(error)
+        console.warn(error)
       });
   }
 

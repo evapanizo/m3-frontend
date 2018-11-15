@@ -12,11 +12,9 @@ const handleError = (error) => {
     case 'email-not-unique':
       isAlreadyUser = true;
       break;
-    case 'empty':
+    default :
       isEmpty = true;
       break;
-    default:
-      console.log(error);
   }
   return {isErrorEmailPassword, isAlreadyUser, isEmpty};
 }

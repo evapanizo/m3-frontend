@@ -53,7 +53,7 @@ class BoxEdit extends Component {
           })
       })
       .catch( error => {
-        console.log(error)
+        console.warn(error)
         this.setState({
           isLoading: false,
         })

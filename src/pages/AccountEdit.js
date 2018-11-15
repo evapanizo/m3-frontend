@@ -41,7 +41,7 @@ class AccountEdit extends Component {
         this.props.history.push('/account')
       })
      .catch((error) => {
-        console.log(error);
+      console.warn(error)
       });  
     }
   }
@@ -59,7 +59,7 @@ class AccountEdit extends Component {
       })
     })
     .catch( (error) => {
-      console.log(error)
+      console.warn(error)
     })
   }
 
