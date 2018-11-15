@@ -40,10 +40,13 @@ Ugly Veggie users can select the box they are interested in and fill it with any
 | /      | Homepage |
 | /auth/signup      | Signup form |
 | /auth/login | Login form |
-| /profile | Show profile |
-| /profile/edit| Edit profile form |
-| /box  | Show box |
-| /box/edit  | Show product search and shopping cart |
+| /account | Show profile |
+| /account/complete| Show complete profile form |
+| /account/welcome| Show welcome message |
+| /account/edit| Edit profile form |
+| /box  | Show box summary |
+| /box/edit  | Show edit box content |
+| /box/change | Show change box plan |
 | 404  | Show Not Found |
 
 ## Pages
@@ -59,12 +62,22 @@ Ugly Veggie users can select the box they are interested in and fill it with any
 - 404 Page 
 
 ## Components
+- Anonymous Route
+- Private Route
+- Loader
 - NavBar
-- Auth Form
-- Slider Box
-- Box Element
-- Product Element
-- Shopping Cart
+- Burger Menu
+- Carousel
+- Slide
+- First Slide
+- Second Slide
+- Box Form
+- Completed Account
+- Incompleted Account
+- Search Bar
+- List of Products
+- Product Cart
+- Product
 
 ## Services
 
@@ -73,14 +86,16 @@ Ugly Veggie users can select the box they are interested in and fill it with any
   - auth.signup(user)
   - auth.logout()
   - auth.me()
-  - auth.editUser(userPropertiesObject)   
+  - auth.updateUser (user)
+  - auth.updatePayment(payment)
 - Box service
-  - box.getBox(userId)
-  - box.createBox(boxObject)
-  - box.editBox(boxPropertiesObject)
-  - box.deleteBox(userID)
+  - box.createBox(box)
+  - box.getBox()
+  - box.getPopulatedBox()
+  - box.editBox(box)
 - Product service
-  - product.getList()
+  - product.getProducts()
+  - product.searchByName(searchValue);
 
 # Server
 
@@ -113,7 +128,7 @@ size                    String  // required
 maxQuantity             Number  // required
 products                Array of Objects  // required
     - quantity          Number
-    - Product_ID        ObjectID<Product>
+    - listOfProducts    ObjectID<Product>
 owner                   ObjectID<User>
 ```
 
@@ -128,38 +143,21 @@ description      String  // required
 
 ## API Endpoints/Backend Routes
 
-- GET /auth/me
-- POST /auth/signup
-  - body:
-    - email
-    - password
-- POST /auth/login
-  - body:
-    - email
-    - password
-- POST /auth/logout
-  - body: (empty)
-- PUT auth/edit
-  - body:
-    - myBox
-    - firstName
-    - lastName
-    - phone
-    - deliveryAddress
-- GET /box
-- POST /box
-  - body:
-    - price
-    - size
-    - maxQuantity
-    - products
-- PUT /box
-  - body:
-    - price
-    - size
-    - maxQuantity
-    - products
-- GET /products
+
+| Method        | Route       | URL/Body |
+| :------------- |:-------------|:-------------|
+| GET      | /auth/me ||
+| POST     | /auth/signup | email, password|
+| POST     | /auth/login | email, password|
+| POST     | /auth/logout | |
+| PUT     | /auth/update | firstName, lastName, deliveryAddress, phone, completedProfile 
+| PUT     | /auth/payment | payment |
+| GET     | /box/get |  |
+| GET     | /box/populate |  |
+| POST     | /box/create | price, size, maxQuantity, products |
+| PUT     | /box/edit | price, size, maxQuantity, products |
+| GET     | /products |  |
+| GET     | /products/search | name |
 
 ## Links
 
@@ -174,7 +172,7 @@ The url to your repository and to your deployed project
 [Client](https://github.com/evapanizo/m3-frontend)
 [Server](https://github.com/evapanizo/m3-backend)
 
-[Deploy](http://heroku.com)
+[Deploy](https://ugly-veggies.firebaseapp.com)
 
 ### Slides
 
