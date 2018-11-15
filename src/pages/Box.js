@@ -20,7 +20,9 @@ class Box extends Component {
   }
 
   componentDidMount() {
-    boxService.getPopulatedBox()
+    const { completedProfile } = this.props.user;
+    if(completedProfile){
+      boxService.getPopulatedBox()
       .then((box) => {
         this.setState({
           isLoading: false,
@@ -33,6 +35,11 @@ class Box extends Component {
         })
         console.warn(error)
       }) 
+    } else {
+      this.setState({
+        isLoading: false,
+      })
+    }
   }
 
   render() {
